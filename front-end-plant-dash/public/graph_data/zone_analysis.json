@@ -1,0 +1,101 @@
+{
+  "2": {
+    "edibleLeaf": 34,
+    "edibleFruit": 27,
+    "cuisine": 45,
+    "medicinal": 55,
+    "poisonousToHumans": 1,
+    "poisonousToPets": 1,
+    "fruits": 63
+  },
+  "3": {
+    "edibleLeaf": 66,
+    "edibleFruit": 53,
+    "cuisine": 78,
+    "medicinal": 223,
+    "poisonousToHumans": 14,
+    "poisonousToPets": 18,
+    "fruits": 251
+  },
+  "4": {
+    "edibleLeaf": 95,
+    "edibleFruit": 86,
+    "cuisine": 114,
+    "medicinal": 348,
+    "poisonousToHumans": 28,
+    "poisonousToPets": 43,
+    "fruits": 433
+  },
+  "5": {
+    "edibleLeaf": 103,
+    "edibleFruit": 108,
+    "cuisine": 124,
+    "medicinal": 461,
+    "poisonousToHumans": 38,
+    "poisonousToPets": 66,
+    "fruits": 571
+  },
+  "6": {
+    "edibleLeaf": 106,
+    "edibleFruit": 114,
+    "cuisine": 128,
+    "medicinal": 515,
+    "poisonousToHumans": 44,
+    "poisonousToPets": 73,
+    "fruits": 609
+  },
+  "7": {
+    "edibleLeaf": 107,
+    "edibleFruit": 115,
+    "cuisine": 123,
+    "medicinal": 514,
+    "poisonousToHumans": 48,
+    "poisonousToPets": 79,
+    "fruits": 552
+  },
+  "8": {
+    "edibleLeaf": 99,
+    "edibleFruit": 104,
+    "cuisine": 119,
+    "medicinal": 481,
+    "poisonousToHumans": 42,
+    "poisonousToPets": 72,
+    "fruits": 505
+  },
+  "9": {
+    "edibleLeaf": 67,
+    "edibleFruit": 73,
+    "cuisine": 100,
+    "medicinal": 309,
+    "poisonousToHumans": 30,
+    "poisonousToPets": 41,
+    "fruits": 277
+  },
+  "10": {
+    "edibleLeaf": 63,
+    "edibleFruit": 64,
+    "cuisine": 94,
+    "medicinal": 199,
+    "poisonousToHumans": 21,
+    "poisonousToPets": 24,
+    "fruits": 158
+  },
+  "11": {
+    "edibleLeaf": 53,
+    "edibleFruit": 52,
+    "cuisine": 81,
+    "medicinal": 132,
+    "poisonousToHumans": 16,
+    "poisonousToPets": 17,
+    "fruits": 107
+  },
+  "12": {
+    "edibleLeaf": 15,
+    "edibleFruit": 16,
+    "cuisine": 20,
+    "medicinal": 42,
+    "poisonousToHumans": 5,
+    "poisonousToPets": 5,
+    "fruits": 28
+  }
+}

@@ -1,0 +1,405 @@
+{
+  "0": {
+    "totalPlants": 3,
+    "edibleLeaf": {
+      "total": 2,
+      "percentage": 66.66666666666666
+    },
+    "edibleFruit": {
+      "total": 0,
+      "percentage": 0.0
+    },
+    "cuisine": {
+      "total": 1,
+      "percentage": 33.33333333333333
+    },
+    "medicinal": {
+      "total": 2,
+      "percentage": 66.66666666666666
+    },
+    "poisonousToHumans": {
+      "total": 0,
+      "percentage": 0.0
+    },
+    "poisonousToPets": {
+      "total": 0,
+      "percentage": 0.0
+    },
+    "fruits": {
+      "total": 2,
+      "percentage": 66.66666666666666
+    }
+  },
+  "1": {
+    "totalPlants": 3,
+    "edibleLeaf": {
+      "total": 1,
+      "percentage": 33.33333333333333
+    },
+    "edibleFruit": {
+      "total": 0,
+      "percentage": 0.0
+    },
+    "cuisine": {
+      "total": 0,
+      "percentage": 0.0
+    },
+    "medicinal": {
+      "total": 3,
+      "percentage": 100.0
+    },
+    "poisonousToHumans": {
+      "total": 0,
+      "percentage": 0.0
+    },
+    "poisonousToPets": {
+      "total": 0,
+      "percentage": 0.0
+    },
+    "fruits": {
+      "total": 1,
+      "percentage": 33.33333333333333
+    }
+  },
+  "2": {
+    "totalPlants": 368,
+    "edibleLeaf": {
+      "total": 80,
+      "percentage": 21.73913043478261
+    },
+    "edibleFruit": {
+      "total": 72,
+      "percentage": 19.565217391304348
+    },
+    "cuisine": {
+      "total": 110,
+      "percentage": 29.891304347826086
+    },
+    "medicinal": {
+      "total": 187,
+      "percentage": 50.815217391304344
+    },
+    "poisonousToHumans": {
+      "total": 7,
+      "percentage": 1.9021739130434785
+    },
+    "poisonousToPets": {
+      "total": 19,
+      "percentage": 5.163043478260869
+    },
+    "fruits": {
+      "total": 170,
+      "percentage": 46.19565217391305
+    }
+  },
+  "3": {
+    "totalPlants": 2262,
+    "edibleLeaf": {
+      "total": 173,
+      "percentage": 7.648099027409372
+    },
+    "edibleFruit": {
+      "total": 186,
+      "percentage": 8.222811671087534
+    },
+    "cuisine": {
+      "total": 208,
+      "percentage": 9.195402298850574
+    },
+    "medicinal": {
+      "total": 848,
+      "percentage": 37.48894783377542
+    },
+    "poisonousToHumans": {
+      "total": 50,
+      "percentage": 2.2104332449160036
+    },
+    "poisonousToPets": {
+      "total": 82,
+      "percentage": 3.6251105216622457
+    },
+    "fruits": {
+      "total": 731,
+      "percentage": 32.316534040671975
+    }
+  },
+  "4": {
+    "totalPlants": 4308,
+    "edibleLeaf": {
+      "total": 289,
+      "percentage": 6.70844939647168
+    },
+    "edibleFruit": {
+      "total": 326,
+      "percentage": 7.567316620241411
+    },
+    "cuisine": {
+      "total": 350,
+      "percentage": 8.124419684308263
+    },
+    "medicinal": {
+      "total": 1525,
+      "percentage": 35.39925719591458
+    },
+    "poisonousToHumans": {
+      "total": 140,
+      "percentage": 3.2497678737233056
+    },
+    "poisonousToPets": {
+      "total": 249,
+      "percentage": 5.779944289693593
+    },
+    "fruits": {
+      "total": 1342,
+      "percentage": 31.151346332404827
+    }
+  },
+  "5": {
+    "totalPlants": 6153,
+    "edibleLeaf": {
+      "total": 382,
+      "percentage": 6.208353648626686
+    },
+    "edibleFruit": {
+      "total": 496,
+      "percentage": 8.06110840240533
+    },
+    "cuisine": {
+      "total": 489,
+      "percentage": 7.947342759629448
+    },
+    "medicinal": {
+      "total": 2112,
+      "percentage": 34.32471964895173
+    },
+    "poisonousToHumans": {
+      "total": 181,
+      "percentage": 2.941654477490655
+    },
+    "poisonousToPets": {
+      "total": 413,
+      "percentage": 6.71217292377702
+    },
+    "fruits": {
+      "total": 1816,
+      "percentage": 29.514058183000163
+    }
+  },
+  "6": {
+    "totalPlants": 6876,
+    "edibleLeaf": {
+      "total": 412,
+      "percentage": 5.991855730075625
+    },
+    "edibleFruit": {
+      "total": 546,
+      "percentage": 7.940663176265271
+    },
+    "cuisine": {
+      "total": 519,
+      "percentage": 7.547993019197207
+    },
+    "medicinal": {
+      "total": 2310,
+      "percentage": 33.595113438045374
+    },
+    "poisonousToHumans": {
+      "total": 203,
+      "percentage": 2.9522978475858057
+    },
+    "poisonousToPets": {
+      "total": 463,
+      "percentage": 6.7335660267597435
+    },
+    "fruits": {
+      "total": 2050,
+      "percentage": 29.813845258871435
+    }
+  },
+  "7": {
+    "totalPlants": 6936,
+    "edibleLeaf": {
+      "total": 429,
+      "percentage": 6.185121107266435
+    },
+    "edibleFruit": {
+      "total": 570,
+      "percentage": 8.217993079584774
+    },
+    "cuisine": {
+      "total": 542,
+      "percentage": 7.814302191464821
+    },
+    "medicinal": {
+      "total": 2408,
+      "percentage": 34.71741637831604
+    },
+    "poisonousToHumans": {
+      "total": 216,
+      "percentage": 3.1141868512110724
+    },
+    "poisonousToPets": {
+      "total": 481,
+      "percentage": 6.934832756632065
+    },
+    "fruits": {
+      "total": 2003,
+      "percentage": 28.87831603229527
+    }
+  },
+  "8": {
+    "totalPlants": 6336,
+    "edibleLeaf": {
+      "total": 402,
+      "percentage": 6.34469696969697
+    },
+    "edibleFruit": {
+      "total": 494,
+      "percentage": 7.796717171717171
+    },
+    "cuisine": {
+      "total": 508,
+      "percentage": 8.017676767676768
+    },
+    "medicinal": {
+      "total": 2161,
+      "percentage": 34.10669191919192
+    },
+    "poisonousToHumans": {
+      "total": 156,
+      "percentage": 2.462121212121212
+    },
+    "poisonousToPets": {
+      "total": 399,
+      "percentage": 6.297348484848484
+    },
+    "fruits": {
+      "total": 1831,
+      "percentage": 28.898358585858585
+    }
+  },
+  "9": {
+    "totalPlants": 3569,
+    "edibleLeaf": {
+      "total": 248,
+      "percentage": 6.948725133090501
+    },
+    "edibleFruit": {
+      "total": 291,
+      "percentage": 8.153544410198935
+    },
+    "cuisine": {
+      "total": 332,
+      "percentage": 9.30232558139535
+    },
+    "medicinal": {
+      "total": 1149,
+      "percentage": 32.19389184645559
+    },
+    "poisonousToHumans": {
+      "total": 100,
+      "percentage": 2.8019052956010086
+    },
+    "poisonousToPets": {
+      "total": 190,
+      "percentage": 5.3236200616419165
+    },
+    "fruits": {
+      "total": 994,
+      "percentage": 27.850938638274027
+    }
+  },
+  "10": {
+    "totalPlants": 1403,
+    "edibleLeaf": {
+      "total": 189,
+      "percentage": 13.471133285816109
+    },
+    "edibleFruit": {
+      "total": 179,
+      "percentage": 12.758374910905204
+    },
+    "cuisine": {
+      "total": 271,
+      "percentage": 19.31575196008553
+    },
+    "medicinal": {
+      "total": 667,
+      "percentage": 47.540983606557376
+    },
+    "poisonousToHumans": {
+      "total": 57,
+      "percentage": 4.06272273699216
+    },
+    "poisonousToPets": {
+      "total": 94,
+      "percentage": 6.6999287241625085
+    },
+    "fruits": {
+      "total": 474,
+      "percentage": 33.78474697077691
+    }
+  },
+  "11": {
+    "totalPlants": 822,
+    "edibleLeaf": {
+      "total": 121,
+      "percentage": 14.720194647201945
+    },
+    "edibleFruit": {
+      "total": 131,
+      "percentage": 15.936739659367397
+    },
+    "cuisine": {
+      "total": 188,
+      "percentage": 22.871046228710462
+    },
+    "medicinal": {
+      "total": 394,
+      "percentage": 47.93187347931874
+    },
+    "poisonousToHumans": {
+      "total": 30,
+      "percentage": 3.64963503649635
+    },
+    "poisonousToPets": {
+      "total": 57,
+      "percentage": 6.934306569343065
+    },
+    "fruits": {
+      "total": 336,
+      "percentage": 40.87591240875913
+    }
+  },
+  "12": {
+    "totalPlants": 261,
+    "edibleLeaf": {
+      "total": 29,
+      "percentage": 11.11111111111111
+    },
+    "edibleFruit": {
+      "total": 41,
+      "percentage": 15.708812260536398
+    },
+    "cuisine": {
+      "total": 51,
+      "percentage": 19.54022988505747
+    },
+    "medicinal": {
+      "total": 132,
+      "percentage": 50.57471264367817
+    },
+    "poisonousToHumans": {
+      "total": 8,
+      "percentage": 3.065134099616858
+    },
+    "poisonousToPets": {
+      "total": 19,
+      "percentage": 7.2796934865900385
+    },
+    "fruits": {
+      "total": 119,
+      "percentage": 45.593869731800766
+    }
+  }
+}

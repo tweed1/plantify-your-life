@@ -1,0 +1,214 @@
+/* .custom-nav-bg {
+	background-color: #93ba91;
+} */
+
+.custom-main-bg {
+	/* background-color: #CDD7CC; */
+	background-color: #ebf9eb;
+}
+
+.layout {
+	/* background-color: #CDD7CC; */
+	background-color: #ebf9eb;
+	height: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+}
+
+.success {
+	color: #ebf9eb;
+}
+
+.navbar-brand {
+	font-weight: 500;
+}
+
+.custom-primary {
+	/* background-color: #004040; */
+	background-color: #005f5f;
+	border: #005f5f;
+}
+
+/* Change border color for a primary button */
+.btn-secondary {
+	background-color: #93ba91;
+	border-color: #93ba91;
+}
+
+/* Change border color on hover */
+.btn-secondary:hover {
+	border-color: green;
+}
+
+/* Change border color on focus (the blue outline) */
+.btn-secondary:focus {
+	border-color: purple !important; /* Use !important if needed */
+	box-shadow: 0 0 0 0.25rem rgba(128, 0, 128, 0.25) !important; /* Adjust box-shadow to match */
+}
+
+.my-anton {
+	font-family: "Anton", sans-serif;
+}
+
+.my-ultra {
+	font-family: "Ultra", serif;
+}
+
+.my-agu {
+	font-family: "Agu Display", serif;
+}
+
+.my-antonio {
+	font-family: "Antonio", serif;
+}
+
+.my-default {
+	font-family: sans-serif;
+}
+
+/* * Zone items */
+
+.display-results-btn {
+	width: 30vw;
+}
+
+.zone-radar-chart {
+	max-width: 90vw;
+}
+
+.vr-style {
+	width: 2px;
+	color: #004040;
+	padding: 0;
+}
+
+.hr-style {
+	opacity: 0.5;
+}
+
+@media (min-width: 810px) {
+	.hr-style {
+		width: 60vw;
+	}
+}
+@media (max-width: 809px) {
+	.hr-style {
+		width: 90vw;
+	}
+}
+
+.zone-grid-container {
+	background-color: #004040; /* Blue background */
+	color: white;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	box-sizing: border-box;
+	width: 90vw;
+	height: 100vh;
+	display: grid;
+	gap: 40px;
+	width: 100%;
+	justify-items: center;
+	align-items: center;
+}
+
+.zone-item {
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
+
+.custom-border {
+	border-right: 1px solid #005f5faf;
+}
+
+.intro-text-grid-container {
+	display: grid;
+	gap: 40px;
+	padding-top: 40px;
+	width: 100%;
+	justify-items: center;
+}
+
+.intro-text-item {
+	background-color: #004040; /* Blue background */
+	color: white;
+	padding: 10px;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	border-radius: 8px;
+
+	box-sizing: border-box;
+	width: 90vw;
+}
+
+/* * Search Page */
+
+.search-page {
+	min-height: 100vh;
+	margin-top: 8vh;
+}
+
+.card-container {
+	padding-bottom: 40px;
+}
+
+.plant-card-title {
+	font-size: 1rem;
+	font-weight: 600;
+	white-space: wrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.plant-card-text {
+	font-size: 0.85rem;
+	color: #6c757d;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.footer-col {
+	color: #ebf9eb;
+}
+
+.foot-row {
+	justify-content: space-between;
+	color: #93ba91;
+}
+
+.link {
+	padding: auto;
+}
+.link:hover {
+	text-decoration: underline;
+}
+
+.nav-style {
+}
+
+.nav-style:hover {
+	text-decoration: underline;
+}
+
+.nav-pill {
+	position: relative;
+	z-index: 1;
+}
+
+.nav-pill::after {
+	content: "";
+	position: absolute;
+	inset: 5px 2px; /* controls pill size */
+	border-radius: 999px; /* create pill shape */
+	z-index: -1;
+	transition: background-color 0.2s ease;
+}
+
+.nav-pill:hover::after {
+	background-color: #93ba91; /* btn-secondary */
+}
