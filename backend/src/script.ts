@@ -29,15 +29,8 @@ async function main() {
 				},
 			},
 		},
-		where: {
-			name: {
-				startsWith: 'A',
-				endsWith: 'e',
-			},
-		},
 	});
 
-    
 	console.log('All users:', JSON.stringify(allUsers, null, 2));
 }
 
