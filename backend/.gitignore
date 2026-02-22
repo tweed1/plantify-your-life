@@ -4,4 +4,4 @@ node_modules
 
 /generated/prisma
 
-/backend/dev.db
+dev.db
