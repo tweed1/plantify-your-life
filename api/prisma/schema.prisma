@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../src/generated/prisma"
 }
 
@@ -25,4 +25,55 @@ model Post {
   published Boolean @default(false)
   author    User    @relation(fields: [authorId], references: [id])
   authorId  Int
+}
+
+model Plant {
+  id                         Int      @id @default(autoincrement())
+  common_name                String
+  scientific_name            String
+  other_name                 String?
+  family                     String
+  hybrid                     String?
+  subspecies                 String?
+  cultivar                   String?
+  variety                    String?
+  species_epithet            String?
+  genus                      String
+  origin                     Json // use Json for arrays
+  type                       String
+  dimensions                 Json? // object or array
+  cycle                      String
+  attracts                   String?
+  propagation                Json? // array
+  hardiness                  Json // object with min/max
+  watering                   String
+  watering_general_benchmark Json? // object
+  plant_anatomy              Json? // array
+  pruning_month              Json? // array
+  seeds                      Boolean?
+  maintenance                String?
+  soil                       Json? // array
+  growth_rate                String?
+  drought_tolerant           Boolean?
+  salt_tolerant              Boolean?
+  thorny                     Boolean?
+  invasive                   Boolean?
+  tropical                   Boolean?
+  indoor                     Boolean?
+  care_level                 String?
+  pest_susceptibility        Json? // array
+  flowers                    Boolean?
+  flowering_season           String?
+  cones                      Boolean?
+  fruits                     Boolean?
+  edible_fruit               Boolean?
+  harvest_season             String
+  leaf                       Boolean?
+  edible_leaf                Boolean?
+  cuisine                    Boolean?
+  medicinal                  Boolean?
+  poisonous_to_humans        Boolean?
+  poisonous_to_pets          Boolean? // nullable => null = not set, false = explicitly false
+  description                String
+  default_image              Json? // object
 }
