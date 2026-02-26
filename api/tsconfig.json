@@ -42,5 +42,7 @@
 		"esModuleInterop": true,
 		"ignoreDeprecations": "6.0",
 		"moduleResolution": "bundler"
-	}
+	},
+    // potentially cause issue but oh well
+	"exclude": ["prisma.config.ts"]
 }

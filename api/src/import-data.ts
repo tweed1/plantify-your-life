@@ -1,25 +1,16 @@
 import fs from 'fs';
 import { chain } from 'stream-chain';
-import { parser } from 'stream-json';
-import { streamArray } from 'stream-json/streamers/StreamArray';
-import { PrismaClient } from './generated/prisma'
-
-const prisma = new PrismaClient();
-
-
-// Define what the JSON object looks like
-interface RawJsonObject {
-	id: number;
-	importantField: string;
-	anotherField: string;
-	junkData: string; // This is the stuff we want to skip
-}
+import type { PlantCreateManyInput } from './generated/prisma/models';
+import parser from 'stream-chain/jsonl/parser.js';
+import { prisma } from './lib/prisma';
+import StreamArray from 'stream-json/streamers/StreamArray';
+import { pick } from 'remeda';
 
 async function runImport() {
 	const pipeline = chain([
-		fs.createReadStream('large-file.json'),
-		parser(),
-		streamArray(),
+		fs.createReadStream('species_details_combined.json'),
+		//parser(),
+		StreamArray.withParser(),
 	]);
 
 	let batch: any[] = [];
@@ -27,22 +18,66 @@ async function runImport() {
 
 	console.log('Starting import...');
 
-	pipeline.on('data', async (data: { value: RawJsonObject }) => {
+	pipeline.on('data', async (data: { value: PlantCreateManyInput }) => {
 		// Pick ONLY what you want for the Prisma Model
-		const { importantField, anotherField } = data.value;
+		const trueData = pick(data.value, [
+			'attracts',
+			'care_level',
+			'common_name',
+			'cones',
+			'cuisine',
+			'cultivar',
+			'cycle',
+			'default_image',
+			'description',
+			'dimensions',
+			'drought_tolerant',
+			'edible_fruit',
+			'edible_leaf',
+			'family',
+			'flowering_season',
+			'flowers',
+			'fruits',
+			'genus',
+			'growth_rate',
+			'hardiness',
+			'harvest_season',
+			'hybrid',
+			'indoor',
+			'invasive',
+			'leaf',
+			'maintenance',
+			'medicinal',
+			'origin',
+			'watering_general_benchmark',
+			'watering',
+			'variety',
+			'type',
+			'tropical',
+			'thorny',
+			'subspecies',
+			'species_epithet',
+            'salt_tolerant',
+			'soil',
+			'seeds',
+			'scientific_name',
+			'pruning_month',
+			'propagation',
+			'poisonous_to_pets',
+			'poisonous_to_humans',
+			'plant_anatomy',
+			'pest_susceptibility',
+			'other_name',
+		]);
 
-		batch.push({
-			importantField,
-			anotherField,
-		});
+		batch.push(trueData);
 
 		if (batch.length >= BATCH_SIZE) {
 			pipeline.pause(); // Stop reading file while DB is writing
 
 			try {
-				await prisma.yourModel.createMany({
+				await prisma.plant.createMany({
 					data: batch,
-					skipDuplicates: true,
 				});
 				console.log(`Inserted ${batch.length} records...`);
 			} catch (err) {
@@ -56,9 +91,9 @@ async function runImport() {
 
 	pipeline.on('end', async () => {
 		if (batch.length > 0) {
-			await prisma.yourModel.createMany({ data: batch });
+			await prisma.plant.createMany({ data: batch });
 		}
-		console.log('✅ Import finished successfully.');
+		console.log('Import finished successfully.');
 		await prisma.$disconnect();
 	});
 
