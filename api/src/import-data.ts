@@ -1,7 +1,6 @@
 import fs from 'fs';
 import { chain } from 'stream-chain';
 import type { PlantCreateManyInput } from './generated/prisma/models';
-import parser from 'stream-chain/jsonl/parser.js';
 import { prisma } from './lib/prisma';
 import StreamArray from 'stream-json/streamers/StreamArray';
 import { pick } from 'remeda';
@@ -57,7 +56,7 @@ async function runImport() {
 			'thorny',
 			'subspecies',
 			'species_epithet',
-            'salt_tolerant',
+			'salt_tolerant',
 			'soil',
 			'seeds',
 			'scientific_name',
