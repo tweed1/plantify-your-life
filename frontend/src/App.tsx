@@ -7,6 +7,9 @@ import ZoneMap from "./Views/ZoneMap";
 import Zone from "./Views/Zone";
 import AppLayout from "./Layouts/AppLayout";
 import PlantDetails from "./Views/PlantDetails";
+import Manage from "./Views/Manage";
+import EditPlant from "./Views/EditPlant";
+
 
 const App = () => {
 	return (
@@ -18,6 +21,8 @@ const App = () => {
 						<Route path="search" element={<Search />} />
 						<Route path="zonemap" element={<ZoneMap />} />
 						<Route path="zone/:id" element={<Zone />} />
+                        <Route path="manage" element={<Manage />} />
+                        <Route path="edit/:id" element={<EditPlant />} />
 						<Route
 							path="plant-details/:id"
 							element={<PlantDetails />}
