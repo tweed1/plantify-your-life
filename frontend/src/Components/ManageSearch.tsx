@@ -67,7 +67,7 @@ const ManageSearch = () => {
 				<form
 					onSubmit={handleSubmit}
 					className="col-12 col-sm-12 col-md-8 col-lg-6 mx-auto">
-					<h2 className="text-start ps-2 my-ultra fs-1">Explore</h2>
+					<h2 className="text-start ps-2 my-ultra fs-1">Update or Delete</h2>
 					<InputGroup className="mb-3" size="lg">
 						<Form.Control
 							value={searchTerm}
