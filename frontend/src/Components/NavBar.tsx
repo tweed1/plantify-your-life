@@ -34,6 +34,13 @@ const Navbar = () => {
 								Search
 							</Link>
 						</li>
+                        <li className="px-2">
+							<Link
+								to="/manage"
+								className="nav-link active text-white my-ultra nav-pill">
+								Manage
+							</Link>
+						</li>
 					</ul>
 				</div>
 			</nav>

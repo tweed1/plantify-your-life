@@ -10,7 +10,7 @@ type Plant = {
 	family: string;
 	origin: string[];
 	cycle: string;
-	sunlight: string[];
+	sunlight?: string[];
 	description: string;
 	watering: string;
 	hardiness: {
@@ -62,8 +62,7 @@ const PlantDetails = () => {
 			try {
 				setLoading(true);
 				const response = await fetch(
-					`https://perenual.com/api/v2/species/details/${params.id}?key=${apiKey}`,
-					{ mode: "cors" }
+					`http://localhost:3000/plant-details/${params.id}`
 				);
 
 				if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -129,7 +128,7 @@ const PlantDetails = () => {
 						<div className="hr"></div>
 						<p className=""> Cycle: {plant.cycle}</p>
 						<p className=""> Watering: {plant.watering}</p>
-						<p className=""> Sunlight: {plant.sunlight.join()}</p>
+						<p className=""> Sunlight: {plant.sunlight?.join()}</p>
 						{(plant.edible_fruit || plant.edible_leaf) && (
 							<p className=""> {plant.common_name} is edible</p>
 						)}
