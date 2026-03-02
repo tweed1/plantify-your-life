@@ -47,6 +47,7 @@ app.get('/plants', async (req, res) => {
 		if (q) {
 			const searchPattern = `%${q}%`;
 			// Fetch the plants
+			plants = await prisma.$queryRaw`
                 SELECT * FROM "Plant"
                 WHERE "common_name" LIKE ${searchPattern}
                     OR "scientific_name" LIKE ${searchPattern}
