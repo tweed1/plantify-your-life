@@ -6,53 +6,73 @@ import Row from 'react-bootstrap/Row';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import Container from 'react-bootstrap/esm/Container';
+import { z } from 'zod';
+import { useForm, type SubmitHandler } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-type Plant = {
-	common_name: string;
-	scientific_name: string[];
-	family: string;
-	origin: string[];
-	cycle: string;
-	sunlight?: string[];
-	description: string;
-	watering: string;
-	hardiness: {
-		min: string;
-		max: string;
-	};
-	pest_susceptibility: string[];
-	edible_fruit: boolean;
-	edible_leaf: boolean;
-	default_image?: {
-		license: 0;
-		license_name: string;
-		license_url: string;
-		original_url: string;
-		regular_url: string;
-		medium_url: string;
-		small_url: string;
-		thumbnail: string;
-	};
-	other_images?: {
-		license: 0;
-		license_name: string;
-		license_url: string;
-		original_url: string;
-		regular_url: string;
-		medium_url: string;
-		small_url: string;
-		thumbnail: string;
-	}[];
-};
+const PlantSchema = z.object({
+	common_name: z.string().min(1, { message: 'this is too small' }).optional(),
+	scientific_name: z.array(z.string()).optional(),
+	family: z.string().optional(),
+	origin: z.array(z.string()).optional(),
+	cycle: z.string().optional(),
+	sunlight: z.array(z.string()).optional().optional(),
+	description: z.string().optional(),
+	watering: z.string().optional(),
+	hardiness: z
+		.object({
+			min: z.string(),
+			max: z.string(),
+		})
+		.optional(),
+	pest_susceptibility: z.array(z.string()).optional(),
+	edible_fruit: z.boolean().optional(),
+	edible_leaf: z.boolean().optional(),
+	image_url: z.string().optional(),
+});
+
+type Plant = z.infer<typeof PlantSchema>;
+const data: unknown = {};
+const validated = PlantSchema.safeParse(data);
 
 function EditForm() {
 	const [loading, setLoading] = useState(false);
 	const [plant, setPlant] = useState<Plant | undefined>();
 	const [error, setError] = useState<string | undefined>();
 	const params = useParams();
+	const {
+		handleSubmit,
+		register,
+		formState: { errors },
+	} = useForm({ resolver: zodResolver(PlantSchema) });
+
+	const onSubmit: SubmitHandler<Plant> = async (data): Promise<void> => {
+		console.dir(data);
+		try {
+			const response = await fetch(
+				`http://localhost:3000/plants/${params.id}`,
+				{
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'application/json', // Inform the server the body is JSON
+						// Add any other necessary headers, e.g., 'Authorization': 'Bearer <token>'
+					},
+					body: JSON.stringify(data),
+				},
+			);
+
+			if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+			const incomingData = await response.json();
+			console.dir(incomingData);
+		} catch (error: any) {
+			setError(error);
+		} finally {
+		}
+	};
 
 	useEffect(() => {
-		document.title = 'Plant Details';
+		document.title = 'Edit Plant Details';
 
 		const id = Number(params.id);
 
@@ -64,7 +84,10 @@ function EditForm() {
 			try {
 				setLoading(true);
 				const response = await fetch(
-					`http://localhost:3000/edit/${params.id}`,
+					`http://localhost:3000/plants/${params.id}`,
+					{
+						method: 'GET',
+					},
 				);
 
 				if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -93,7 +116,7 @@ function EditForm() {
 
 	return (
 		<Container>
-			<Form>
+			<Form onSubmit={handleSubmit(onSubmit)}>
 				<Row>
 					<Col xl>
 						{/* image upload and common name */}
@@ -108,6 +131,7 @@ function EditForm() {
 								<Form.Control
 									type="file"
 									accept="image/png, image/jpeg" // Restrict to image file types
+
 									/* onChange={handleFileChange} */
 								/>
 							</Form.Group>
@@ -120,7 +144,11 @@ function EditForm() {
 								<Form.Control
 									type="text"
 									placeholder={plant.common_name}
+									{...register('common_name')}
 								/>
+								{errors.common_name && (
+									<p> {errors.common_name.message} </p>
+								)}
 							</Form.Group>
 						</Row>
 						{/* offset and scientific name */}
@@ -132,7 +160,9 @@ function EditForm() {
 									<Form.Label>Scientific Name</Form.Label>
 									<Form.Control
 										type="text"
-										placeholder={plant.scientific_name}
+										placeholder={plant.scientific_name?.join(
+											' ',
+										)}
 									/>
 								</Form.Group>
 							</Col>
@@ -151,7 +181,7 @@ function EditForm() {
 									/>
 								</Form.Group>
 							</Col>
-                            <Col>
+							<Col>
 								<Form.Group>
 									<Form.Label>
 										Does it have edible leaves?

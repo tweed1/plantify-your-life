@@ -5,6 +5,7 @@ import type { Prisma } from './generated/prisma/client';
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 const port = 3000;
 
 app.get('/', (req, res) => {
@@ -23,15 +24,6 @@ app.get('/user/:id', async (req, res) => {
 	return res.json(user);
 });
 
-// get a plant's details
-app.get('/plant-details/:id', async (req, res) => {
-	const plant = await prisma.plant.findUnique({
-		where: {
-			id: Number(req.params.id),
-		},
-	});
-	return res.json(plant);
-});
 
 // search all plants
 app.get('/plants', async (req, res) => {
@@ -86,9 +78,8 @@ app.get('/plants', async (req, res) => {
 	}
 });
 
-// manage
 // get a plant's details
-app.get('/edit/:id', async (req, res) => {
+app.get('/plants/:id', async (req, res) => {
 	const plant = await prisma.plant.findUnique({
 		where: {
 			id: Number(req.params.id),
@@ -97,17 +88,16 @@ app.get('/edit/:id', async (req, res) => {
 	return res.json(plant);
 });
 
-
-app.post('/edit/:id', async (req, res) => {
+app.put('/plants/:id', async (req, res) => {
     const body = req.body;
-
+    console.dir(body);
     try {
         const updatedPlant = await prisma.plant.update({
             where: { id: Number(req.params.id) },
             data: {
                 // 1. Basic Strings (Straightforward)
                 common_name: body.common_name,
-                family:      body.family,
+                /* family:      body.family,
                 genus:       body.genus,
                 
                 // 2. JSON fields (SQLite treats these as dynamic blobs)
@@ -123,7 +113,7 @@ app.post('/edit/:id', async (req, res) => {
                 
                 // 4. Complex JSON (Like dimensions or hardiness)
                 // Assuming the UI sends these as nested fields or a JSON string
-                dimensions: body.dimensions ? JSON.parse(body.dimensions) : undefined,
+                dimensions: body.dimensions ? JSON.parse(body.dimensions) : undefined, */
             },
         });
 
@@ -134,6 +124,11 @@ app.post('/edit/:id', async (req, res) => {
     }
 });
 
+app.delete('/plants/:id', async(req, res) => {
+
+})
+
+/* ********************* */
 app.listen(port, () => {
 	console.log(`Example app listening on port ${port}`);
 });
