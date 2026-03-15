@@ -13,7 +13,7 @@
 		"type-check": "tsc --noEmit",
 		"lint": "eslint .",
 		"lint:fix": "eslint --fix .",
-		"format": "prettier --write .",
+		"format": "prisma format && prettier --write .",
 		"format:check": "prettier --check .",
 		"test": "vitest",
 		"test:run": "vitest --run",
