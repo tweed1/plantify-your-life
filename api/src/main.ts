@@ -97,6 +97,19 @@ app.put('/plants/:id', async (req, res) => {
             data: {
                 // 1. Basic Strings (Straightforward)
                 common_name: body.common_name,
+                cycle: body.cycle,
+                description: body.description,
+                family: body.family,
+                flowering_season: body.flowering_season,
+                genus: body.genus,
+                hardiness_min: body.hardiness_min,
+                hardiness_max: body.hardiness_max,
+                harvest_season: body.harvest_season,
+                plant_anatomy: body.plant_anatomy,
+                scientific_name: body.scientific_name,
+                type: body.type,
+                
+
                 /* family:      body.family,
                 genus:       body.genus,
                 

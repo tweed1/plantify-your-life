@@ -12,19 +12,22 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 const PlantSchema = z.object({
 	common_name: z.string().min(1, { message: 'this is too small' }).optional(),
-	scientific_name: z.array(z.string()).optional(),
+	scientific_name: z
+		.string()
+		.min(1, { message: 'this is too small' })
+		.optional(),
 	family: z.string().optional(),
-	origin: z.array(z.string()).optional(),
+	type: z.string().optional(),
+	genus: z.string().optional(),
 	cycle: z.string().optional(),
+	flowering_season: z.string().optional(),
+	harvest_season: z.string().optional(),
+	plant_anatomy: z.string().optional(),
 	sunlight: z.array(z.string()).optional().optional(),
 	description: z.string().optional(),
 	watering: z.string().optional(),
-	hardiness: z
-		.object({
-			min: z.string(),
-			max: z.string(),
-		})
-		.optional(),
+	hardiness_min: z.coerce.number().int().optional(),
+	hardiness_max: z.coerce.number().int().optional(),
 	pest_susceptibility: z.array(z.string()).optional(),
 	edible_fruit: z.boolean().optional(),
 	edible_leaf: z.boolean().optional(),
@@ -115,7 +118,7 @@ function EditForm() {
 	}
 
 	return (
-		<Container>
+		<Container className="mb-3">
 			<Form onSubmit={handleSubmit(onSubmit)}>
 				<Row>
 					<Col xl>
@@ -143,7 +146,12 @@ function EditForm() {
 								<Form.Label>Common Name</Form.Label>
 								<Form.Control
 									type="text"
-									placeholder={plant.common_name}
+									placeholder={
+										plant.common_name
+											? plant.common_name
+											: 'Enter common name'
+									}
+									defaultValue={plant.common_name}
 									{...register('common_name')}
 								/>
 								{errors.common_name && (
@@ -160,14 +168,194 @@ function EditForm() {
 									<Form.Label>Scientific Name</Form.Label>
 									<Form.Control
 										type="text"
-										placeholder={plant.scientific_name?.join(
-											' ',
-										)}
+										placeholder={plant.scientific_name}
+										defaultValue={plant.scientific_name}
+										{...register('scientific_name')}
 									/>
+									{errors.scientific_name && (
+										<p>
+											{' '}
+											{
+												errors.scientific_name.message
+											}{' '}
+										</p>
+									)}
 								</Form.Group>
 							</Col>
 						</Row>
 
+						{/* plant anatomy description */}
+						<Form.Group
+							className="mb-3 text-start"
+							controlId="formGridAnatomy">
+							<Form.Label>Plant Anatomy</Form.Label>
+							<Form.Control
+								placeholder={
+									plant.plant_anatomy
+										? plant.plant_anatomy
+										: 'ex: Has pink and red leaves with a red stem and white flowers'
+								}
+								as="textarea"
+								defaultValue={plant.plant_anatomy}
+								{...register('plant_anatomy')}
+							/>
+						</Form.Group>
+
+						{/* Full description */}
+						<Form.Group
+							className="mb-3 text-start"
+							controlId="formGridDescription">
+							<Form.Label>Description</Form.Label>
+							<Form.Control
+								placeholder={
+									plant.description
+										? plant.description
+										: 'ex: The Common Paw Paw is an amazing, versatile species native to North America. Not only can the cooked fruit be used in desserts and other culinary dishes, but the seeds, leaves and bark can also provide medicinal benefits.'
+								}
+								as="textarea"
+								defaultValue={plant.description}
+								{...register('description')}
+							/>
+						</Form.Group>
+					</Col>
+
+					<Col xl>
+						{/* family, genus, and type */}
+						<Row className="mb-3">
+							<Form.Group as={Col} controlId="formGridFamily">
+								<Form.Label>Family</Form.Label>
+								<Form.Control
+									type="text"
+									placeholder={
+										plant.family
+											? plant.family
+											: 'ex: Annonaceae'
+									}
+									defaultValue={plant.family}
+									{...register('family')}
+								/>
+							</Form.Group>
+
+							<Form.Group as={Col} controlId="formGridFamily">
+								<Form.Label>Genus</Form.Label>
+								<Form.Control
+									type="text"
+									placeholder={
+										plant.genus
+											? plant.genus
+											: 'ex: Asimina'
+									}
+									defaultValue={plant.genus}
+									{...register('genus')}
+								/>
+							</Form.Group>
+
+							{/* Eventually make this for type. When type is its own table
+                            <Form.Group as={Col} controlId="formGridState">
+								<Form.Label>State</Form.Label>
+								<Form.Select defaultValue="Choose...">
+									<option>Choose...</option>
+									<option>...</option>
+								</Form.Select>
+							</Form.Group> */}
+
+							<Form.Group as={Col} controlId="formGridFamily">
+								<Form.Label>Type</Form.Label>
+								<Form.Control
+									type="text"
+									placeholder={
+										plant.type ? plant.type : 'ex: Tree'
+									}
+									defaultValue={
+										plant.type ? plant.type : 'ex: Tree'
+									}
+									{...register('type')}
+								/>
+							</Form.Group>
+						</Row>
+						{/* cycle, flowering season, harvest season */}
+						<Row className="mb-3">
+							<Form.Group as={Col} controlId="formGridFamily">
+								<Form.Label>Cycle</Form.Label>
+								<Form.Control
+									type="text"
+									placeholder={
+										plant.cycle
+											? plant.cycle
+											: 'ex: Perennial'
+									}
+									defaultValue={plant.cycle}
+									{...register('cycle')}
+								/>
+							</Form.Group>
+
+							<Form.Group as={Col} controlId="formGridFamily">
+								<Form.Label>Flowering Season</Form.Label>
+								<Form.Control
+									type="text"
+									placeholder={
+										plant.flowering_season
+											? plant.flowering_season
+											: 'ex: Spring'
+									}
+									defaultValue={plant.flowering_season}
+									{...register('flowering_season')}
+								/>
+							</Form.Group>
+
+							<Form.Group as={Col} controlId="formGridFamily">
+								<Form.Label>Harvest Season</Form.Label>
+								<Form.Control
+									type="text"
+									placeholder={
+										plant.harvest_season
+											? plant.harvest_season
+											: 'ex: Fall'
+									}
+									defaultValue={plant.harvest_season}
+									{...register('harvest_season')}
+								/>
+							</Form.Group>
+						</Row>
+						{/* Hardiness zones */}
+						<Row className="mb-3">
+							<p className="mb-0 pb-0">Hardiness Zones</p>
+							<Form.Group as={Col} controlId="formHardiness">
+								<Form.Label>From:</Form.Label>
+								<Form.Control
+									type="number"
+									placeholder={
+										plant.hardiness_min
+											? plant.hardiness_min
+											: 7
+									}
+									defaultValue={plant.hardiness_min}
+									{...register('hardiness_min')}
+								/>
+								{errors.hardiness_min && (
+									<p> {errors.hardiness_min.message} </p>
+								)}
+							</Form.Group>
+
+							<Form.Group as={Col} controlId="formGridHardiness">
+								<Form.Label>To:</Form.Label>
+								<Form.Control
+									type="number"
+									placeholder={
+										plant.hardiness_max
+											? plant.hardiness_max
+											: 9
+									}
+									defaultValue={plant.hardiness_max}
+									{...register('hardiness_max')}
+								/>
+								{errors.hardiness_max && (
+									<p> {errors.hardiness_max.message} </p>
+								)}
+							</Form.Group>
+						</Row>
+
+						{/* T/F does it have edible fruit or leaves */}
 						<Row className="mb-3">
 							<Col>
 								<Form.Group>
@@ -194,102 +382,11 @@ function EditForm() {
 								</Form.Group>
 							</Col>
 						</Row>
-
-						<Form.Group
-							className="mb-3"
-							controlId="formGridAddress1">
-							<Form.Label>Address</Form.Label>
-							<Form.Control placeholder="1234 Main St" />
-						</Form.Group>
-
-						<Form.Group
-							className="mb-3"
-							controlId="formGridAddress2">
-							<Form.Label>Address 2</Form.Label>
-							<Form.Control placeholder="Apartment, studio, or floor" />
-						</Form.Group>
-
-						<Row className="mb-3">
-							<Form.Group as={Col} controlId="formGridCity">
-								<Form.Label>City</Form.Label>
-								<Form.Control />
-							</Form.Group>
-
-							<Form.Group as={Col} controlId="formGridState">
-								<Form.Label>State</Form.Label>
-								<Form.Select defaultValue="Choose...">
-									<option>Choose...</option>
-									<option>...</option>
-								</Form.Select>
-							</Form.Group>
-
-							<Form.Group as={Col} controlId="formGridZip">
-								<Form.Label>Zip</Form.Label>
-								<Form.Control />
-							</Form.Group>
-						</Row>
-
-						<Form.Group className="mb-3" id="formGridCheckbox">
-							<Form.Check type="checkbox" label="Check me out" />
-						</Form.Group>
-					</Col>
-					<Col xl>
-						<Row className="mb-3">
-							<Form.Group as={Col} controlId="formGridEmail">
-								<Form.Label>Email</Form.Label>
-								<Form.Control
-									type="email"
-									placeholder="Enter email"
-								/>
-							</Form.Group>
-
-							<Form.Group as={Col} controlId="formGridPassword">
-								<Form.Label>Password</Form.Label>
-								<Form.Control
-									type="password"
-									placeholder="Password"
-								/>
-							</Form.Group>
-						</Row>
-
-						<Form.Group
-							className="mb-3"
-							controlId="formGridAddress1">
-							<Form.Label>Address</Form.Label>
-							<Form.Control placeholder="1234 Main St" />
-						</Form.Group>
-
-						<Form.Group
-							className="mb-3"
-							controlId="formGridAddress2">
-							<Form.Label>Address 2</Form.Label>
-							<Form.Control placeholder="Apartment, studio, or floor" />
-						</Form.Group>
-
-						<Row className="mb-3">
-							<Form.Group as={Col} controlId="formGridCity">
-								<Form.Label>City</Form.Label>
-								<Form.Control />
-							</Form.Group>
-
-							<Form.Group as={Col} controlId="formGridState">
-								<Form.Label>State</Form.Label>
-								<Form.Select defaultValue="Choose...">
-									<option>Choose...</option>
-									<option>...</option>
-								</Form.Select>
-							</Form.Group>
-
-							<Form.Group as={Col} controlId="formGridZip">
-								<Form.Label>Zip</Form.Label>
-								<Form.Control />
-							</Form.Group>
-						</Row>
-
-						<Form.Group className="mb-3" id="formGridCheckbox">
-							<Form.Check type="checkbox" label="Check me out" />
-						</Form.Group>
-						<Button variant="primary" type="submit">
+						<hr></hr>
+						<Button
+							variant="primary"
+							type="submit"
+							className="custom-primary">
 							Submit
 						</Button>
 					</Col>
