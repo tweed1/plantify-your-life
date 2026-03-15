@@ -7,7 +7,7 @@ import { pick } from 'remeda';
 
 async function runImport() {
 	const pipeline = chain([
-		fs.createReadStream('species_details_combined.json'),
+		fs.createReadStream('species_details_combined_transformed.json'),
 		//parser(),
 		StreamArray.withParser(),
 	]);
@@ -39,7 +39,8 @@ async function runImport() {
 			'fruits',
 			'genus',
 			'growth_rate',
-			'hardiness',
+			'hardiness_min',
+            'hardiness_max',
 			'harvest_season',
 			'hybrid',
 			'indoor',
@@ -66,7 +67,6 @@ async function runImport() {
 			'poisonous_to_humans',
 			'plant_anatomy',
 			'pest_susceptibility',
-			'other_name',
 		]);
 
 		batch.push(trueData);
@@ -81,7 +81,8 @@ async function runImport() {
 				console.log(`Inserted ${batch.length} records...`);
 			} catch (err) {
 				console.error('Batch insert failed:', err);
-			}
+                return;
+			} 
 
 			batch = [];
 			pipeline.resume(); // Start reading again

@@ -30,8 +30,7 @@ model Post {
 model Plant {
   id                         Int      @id @default(autoincrement())
   common_name                String?
-  scientific_name            Json?
-  other_name                 Json?
+  scientific_name            String?
   family                     String?
   hybrid                     String?
   subspecies                 String?
@@ -45,10 +44,11 @@ model Plant {
   cycle                      String?
   attracts                   Json?
   propagation                Json? // array
-  hardiness                  Json? // object with min/max
+  hardiness_min              Int?
+  hardiness_max              Int?
   watering                   String?
   watering_general_benchmark Json? // object
-  plant_anatomy              Json? // array
+  plant_anatomy              String?
   pruning_month              Json? // array
   seeds                      Boolean?
   maintenance                String?
