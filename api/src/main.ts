@@ -118,7 +118,8 @@ app.put('/plants/:id', async (req, res) => {
 });
 
 app.delete('/plants/:id', async (req, res) => {
-	const id = req.params;
+	const id = req.params.id;
+    console.log(id);
 
 	try {
 		const deletedItem = await prisma.plant.delete({
