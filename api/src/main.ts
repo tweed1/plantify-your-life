@@ -24,7 +24,6 @@ app.get('/user/:id', async (req, res) => {
 	return res.json(user);
 });
 
-
 // search all plants
 app.get('/plants', async (req, res) => {
 	try {
@@ -89,44 +88,83 @@ app.get('/plants/:id', async (req, res) => {
 });
 
 app.put('/plants/:id', async (req, res) => {
-    const body = req.body;
-    console.dir(body);
-    try {
-        const updatedPlant = await prisma.plant.update({
-            where: { id: Number(req.params.id) },
-            data: {
-                // 1. Basic Strings (Straightforward)
-                common_name: body.common_name,
-                /* family:      body.family,
-                genus:       body.genus,
-                
-                // 2. JSON fields (SQLite treats these as dynamic blobs)
-                // If your UI sends a comma-separated string, split it into an array
-                scientific_name: body.scientific_name, // Just a string is valid JSON
-                propagation:     Array.isArray(body.propagation) ? body.propagation : body.propagation?.split(','),
-                origin:          Array.isArray(body.origin) ? body.origin : [body.origin],
-                
-                // 3. Booleans (Forms send "true"/"false" strings or "on")
-                seeds:               body.seeds === 'true' || body.seeds === 'on',
-                flowers:             body.flowers === 'true' || body.flowers === 'on',
-                poisonous_to_pets:   body.poisonous_to_pets === 'true' || body.poisonous_to_pets === 'on',
-                
-                // 4. Complex JSON (Like dimensions or hardiness)
-                // Assuming the UI sends these as nested fields or a JSON string
-                dimensions: body.dimensions ? JSON.parse(body.dimensions) : undefined, */
-            },
-        });
+	const body = req.body;
+	console.dir(body);
+	try {
+		const updatedPlant = await prisma.plant.update({
+			where: { id: Number(req.params.id) },
+			data: {
+				// 1. Basic Strings (Straightforward)
+				common_name: body.common_name,
+				cycle: body.cycle,
+				description: body.description,
+				family: body.family,
+				flowering_season: body.flowering_season,
+				genus: body.genus,
+				hardiness_min: body.hardiness_min,
+				hardiness_max: body.hardiness_max,
+				harvest_season: body.harvest_season,
+				plant_anatomy: body.plant_anatomy,
+				scientific_name: body.scientific_name,
+				type: body.type,
+			},
+		});
 
-        res.json(updatedPlant);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Failed to update plant" });
-    }
+		res.json(updatedPlant);
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ error: 'Failed to update plant' });
+	}
 });
 
-app.delete('/plants/:id', async(req, res) => {
+app.delete('/plants/:id', async (req, res) => {
+	const id = req.params.id;
+    console.log(id);
 
-})
+	try {
+		const deletedItem = await prisma.plant.delete({
+			where: { id: Number(id) },
+		});
+		res.status(200).json(deletedItem);
+	} catch (error) {
+		res.status(404).json({ error: 'item not found or deletion failed' });
+	}
+});
+
+app.post('/plants', async (req, res) => {
+	const {
+		common_name,
+		cycle,
+		description,
+		family,
+		flowering_season,
+		genus,
+		hardiness_min,
+		hardiness_max,
+		harvest_season,
+		plant_anatomy,
+		scientific_name,
+		type,
+	} = req.body;
+
+	const newPlant = await prisma.plant.create({
+		data: {
+			common_name,
+			cycle,
+			description,
+			family,
+			flowering_season,
+			genus,
+			hardiness_min,
+			hardiness_max,
+			harvest_season,
+			plant_anatomy,
+			scientific_name,
+			type,
+		},
+	});
+	res.json(newPlant);
+});
 
 /* ********************* */
 app.listen(port, () => {

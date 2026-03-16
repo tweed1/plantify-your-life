@@ -1,8 +1,9 @@
 import { useEffect } from "react";
-import SearchPlant from "../Components/SearchPlantDB"
+import { useNavigate } from 'react-router';
 import ManageSearch from "../Components/ManageSearch";
 
 const Manage = () => {
+
     useEffect(() => {
         document.title = 'Manage'
     },[])

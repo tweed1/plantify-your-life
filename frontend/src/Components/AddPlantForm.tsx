@@ -36,7 +36,7 @@ type Plant = z.infer<typeof PlantSchema>;
 const data: unknown = {};
 const validated = PlantSchema.safeParse(data);
 
-function EditForm() {
+function AddForm() {
 	const [loading, setLoading] = useState(false);
 	const [plant, setPlant] = useState<Plant | undefined>();
 	const [error, setError] = useState<string | undefined>();
@@ -51,21 +51,17 @@ function EditForm() {
 		console.dir(data);
 		try {
 			const response = await fetch(
-				`http://localhost:3000/plants/${params.id}`,
+				`http://localhost:3000/plants/`,
 				{
-					method: 'PUT',
+					method: 'POST',
 					headers: {
-						'Content-Type': 'application/json', // Inform the server the body is JSON
-						// Add any other necessary headers, e.g., 'Authorization': 'Bearer <token>'
-					},
+						'Content-Type': 'application/json'},
 					body: JSON.stringify(data),
 				},
 			);
 
 			if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-			const incomingData = await response.json();
-			console.dir(incomingData);
+            
 		} catch (error: any) {
 			setError(error);
 		} finally {
@@ -73,47 +69,13 @@ function EditForm() {
 	};
 
 	useEffect(() => {
-		document.title = 'Edit Plant Details';
-
-		const id = Number(params.id);
-
-		if (Number.isNaN(id) || !params.id) {
-			setError('Invalid plant ID');
-			return;
-		}
-		const fetchPlants = async () => {
-			try {
-				setLoading(true);
-				const response = await fetch(
-					`http://localhost:3000/plants/${params.id}`,
-					{
-						method: 'GET',
-					},
-				);
-
-				if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-				const incomingData = await response.json();
-				console.dir(incomingData);
-				setPlant(incomingData);
-			} catch (error: any) {
-				setError(error);
-			} finally {
-				setLoading(false);
-			}
-		};
-		fetchPlants();
-	}, [params.id]);
+		document.title = 'Add New Plant';
+    });
 	if (error) {
 		return <p>Something went wrong :(</p>;
 	}
-	if (!plant || loading) {
-		return (
-			<div>
-				<p> loading</p>
-			</div>
-		);
-	}
+	
+	
 
 	return (
 		<Container className="mb-3">
@@ -144,12 +106,7 @@ function EditForm() {
 								<Form.Label>Common Name</Form.Label>
 								<Form.Control
 									type="text"
-									placeholder={
-										plant.common_name
-											? plant.common_name
-											: 'Enter common name'
-									}
-									defaultValue={plant.common_name}
+									placeholder={'Enter common name'}
 									{...register('common_name')}
 								/>
 								{errors.common_name && (
@@ -166,8 +123,7 @@ function EditForm() {
 									<Form.Label>Scientific Name</Form.Label>
 									<Form.Control
 										type="text"
-										placeholder={plant.scientific_name}
-										defaultValue={plant.scientific_name}
+										placeholder={'Enter scientific name'}
 										{...register('scientific_name')}
 									/>
 									{errors.scientific_name && (
@@ -188,13 +144,8 @@ function EditForm() {
 							controlId="formGridAnatomy">
 							<Form.Label>Plant Anatomy</Form.Label>
 							<Form.Control
-								placeholder={
-									plant.plant_anatomy
-										? plant.plant_anatomy
-										: 'ex: Has pink and red leaves with a red stem and white flowers'
-								}
+								placeholder={'ex: Has pink and red leaves with a red stem and white flowers'}
 								as="textarea"
-								defaultValue={plant.plant_anatomy}
 								{...register('plant_anatomy')}
 							/>
 						</Form.Group>
@@ -205,13 +156,8 @@ function EditForm() {
 							controlId="formGridDescription">
 							<Form.Label>Description</Form.Label>
 							<Form.Control
-								placeholder={
-									plant.description
-										? plant.description
-										: 'ex: The Common Paw Paw is an amazing, versatile species native to North America. Not only can the cooked fruit be used in desserts and other culinary dishes, but the seeds, leaves and bark can also provide medicinal benefits.'
-								}
+								placeholder={'ex: The Common Paw Paw is an amazing, versatile species native to North America. Not only can the cooked fruit be used in desserts and other culinary dishes, but the seeds, leaves and bark can also provide medicinal benefits.'}
 								as="textarea"
-								defaultValue={plant.description}
 								{...register('description')}
 							/>
 						</Form.Group>
@@ -224,12 +170,7 @@ function EditForm() {
 								<Form.Label>Family</Form.Label>
 								<Form.Control
 									type="text"
-									placeholder={
-										plant.family
-											? plant.family
-											: 'ex: Annonaceae'
-									}
-									defaultValue={plant.family}
+									placeholder={'ex: Annonaceae'}
 									{...register('family')}
 								/>
 							</Form.Group>
@@ -238,12 +179,7 @@ function EditForm() {
 								<Form.Label>Genus</Form.Label>
 								<Form.Control
 									type="text"
-									placeholder={
-										plant.genus
-											? plant.genus
-											: 'ex: Asimina'
-									}
-									defaultValue={plant.genus}
+									placeholder={'ex: Asimina'}
 									{...register('genus')}
 								/>
 							</Form.Group>
@@ -261,12 +197,7 @@ function EditForm() {
 								<Form.Label>Type</Form.Label>
 								<Form.Control
 									type="text"
-									placeholder={
-										plant.type ? plant.type : 'ex: Tree'
-									}
-									defaultValue={
-										plant.type ? plant.type : 'ex: Tree'
-									}
+									placeholder={'ex: Tree'}
 									{...register('type')}
 								/>
 							</Form.Group>
@@ -277,12 +208,7 @@ function EditForm() {
 								<Form.Label>Cycle</Form.Label>
 								<Form.Control
 									type="text"
-									placeholder={
-										plant.cycle
-											? plant.cycle
-											: 'ex: Perennial'
-									}
-									defaultValue={plant.cycle}
+									placeholder={'ex: Perennial'}
 									{...register('cycle')}
 								/>
 							</Form.Group>
@@ -291,12 +217,7 @@ function EditForm() {
 								<Form.Label>Flowering Season</Form.Label>
 								<Form.Control
 									type="text"
-									placeholder={
-										plant.flowering_season
-											? plant.flowering_season
-											: 'ex: Spring'
-									}
-									defaultValue={plant.flowering_season}
+									placeholder={'ex: Spring'}
 									{...register('flowering_season')}
 								/>
 							</Form.Group>
@@ -305,12 +226,7 @@ function EditForm() {
 								<Form.Label>Harvest Season</Form.Label>
 								<Form.Control
 									type="text"
-									placeholder={
-										plant.harvest_season
-											? plant.harvest_season
-											: 'ex: Fall'
-									}
-									defaultValue={plant.harvest_season}
+									placeholder={'ex: Fall'}
 									{...register('harvest_season')}
 								/>
 							</Form.Group>
@@ -322,12 +238,7 @@ function EditForm() {
 								<Form.Label>From:</Form.Label>
 								<Form.Control
 									type="number"
-									placeholder={
-										plant.hardiness_min
-											? plant.hardiness_min
-											: 7
-									}
-									defaultValue={plant.hardiness_min}
+									placeholder={1}
 									{...register('hardiness_min')}
 								/>
 								{errors.hardiness_min && (
@@ -339,12 +250,7 @@ function EditForm() {
 								<Form.Label>To:</Form.Label>
 								<Form.Control
 									type="number"
-									placeholder={
-										plant.hardiness_max
-											? plant.hardiness_max
-											: 9
-									}
-									defaultValue={plant.hardiness_max}
+									placeholder={9}
 									{...register('hardiness_max')}
 								/>
 								{errors.hardiness_max && (
@@ -385,7 +291,7 @@ function EditForm() {
 							variant="primary"
 							type="submit"
 							className="custom-primary">
-							Submit
+							Add Plant
 						</Button>
 					</Col>
 				</Row>
@@ -394,4 +300,4 @@ function EditForm() {
 	);
 }
 
-export default EditForm;
+export default AddForm;
