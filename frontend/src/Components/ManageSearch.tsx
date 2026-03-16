@@ -1,10 +1,10 @@
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import placeholder from '../assets/images/newton.jpeg';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { Col, Container, Row, Image, Button, Form } from 'react-bootstrap';
+import flower from '../assets/images/white_strawflower_sm.png';
 
 const ManageSearch = () => {
 	const apiKey = import.meta.env.VITE_PERENUAL_API_KEY;
@@ -15,6 +15,8 @@ const ManageSearch = () => {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [currentPage, setCurrentPage] = useState(1);
 	const [lastPage, setLastPage] = useState(1);
+	const [actionType, setActionType] = useState('update');
+	const navigate = useNavigate();
 
 	/* fetches species list with given search term and page number */
 	const fetchPlants = async (page = 1, term = searchTerm) => {
@@ -35,7 +37,7 @@ const ManageSearch = () => {
 			setLastPage(data.last_page);
 		} catch (error: any) {
 			setError(error);
-            console.log(error)
+			console.log(error);
 		} finally {
 			setLoading(false);
 		}
@@ -67,7 +69,27 @@ const ManageSearch = () => {
 				<form
 					onSubmit={handleSubmit}
 					className="col-12 col-sm-12 col-md-8 col-lg-6 mx-auto">
-					<h2 className="text-start ps-2 my-ultra fs-1">Update or Delete</h2>
+					<h2 className="text-start ps-2 my-ultra fs-1">
+						<span
+							style={{
+								cursor: 'pointer',
+								textDecoration: actionType === "update" ? "underline" : "none"
+							}}
+							onClick={() => setActionType('update')}>
+							Update
+						</span>
+
+						{' or '}
+
+						<span
+							style={{
+								cursor: 'pointer',
+								textDecoration: actionType === "delete" ? "underline" : "none"
+							}}
+							onClick={() => setActionType('delete')}>
+							Delete
+						</span>
+					</h2>
 					<InputGroup className="mb-3" size="lg">
 						<Form.Control
 							value={searchTerm}
@@ -91,20 +113,22 @@ const ManageSearch = () => {
 				{loading && <p>Loading...</p>}
 				{error && <p> Error: </p>}
 
-                {/* NEW CONTENT */}
+				{/* NEW CONTENT */}
 				{/* List Results */}
 				<div className="col-12 col-sm-12 col-md-8 col-lg-6 mx-auto">
-					<ListGroup
-						className="mx-auto"
-						variant="flush">
+					<ListGroup className="mx-auto" variant="flush">
 						{allPlants.map((plant: any) => (
 							<ListGroup.Item
 								key={plant.id}
 								action
-								as={Link}
-								to={`/edit/${plant.id}`}
+								onClick={() =>
+									navigate(
+										actionType === 'update'
+											? `/edit/${plant.id}`
+											: `/delete/${plant.id}`,
+									)
+								}
 								className="text-start">
-
 								<span className="fw-semibold">
 									{plant.common_name || 'Unknown'}
 								</span>
@@ -115,7 +139,7 @@ const ManageSearch = () => {
 						))}
 					</ListGroup>
 				</div>
-                {/* END NEW CONTENT */}
+				{/* END NEW CONTENT */}
 				{/* * Page Navigation */}
 				{allPlants.length > 0 && (
 					<nav aria-label="Plant pagination" className="mt-4 mx-auto">
@@ -149,6 +173,26 @@ const ManageSearch = () => {
 						</p>
 					</nav>
 				)}
+				{/* Flower attached to navbar */}
+				<Container fluid className="mx-0 px-0">
+					<Row>
+						<Col>
+							<Button
+								variant="link"
+								className="p-0 border-0 flower-btn" // p-0 removes default button padding
+								onClick={() => navigate('/add')}>
+								<Image
+									src={flower}
+									alt="half a purple bachelor button used for navigation bar decoration"
+									rounded
+									width={150}
+									height={150}></Image>
+							</Button>
+						</Col>
+						<Col></Col>
+						<Col className=""></Col>
+					</Row>
+				</Container>
 			</div>
 		</div>
 	);

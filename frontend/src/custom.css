@@ -48,19 +48,19 @@
 }
 
 .my-anton {
-	font-family: "Anton", sans-serif;
+	font-family: 'Anton', sans-serif;
 }
 
 .my-ultra {
-	font-family: "Ultra", serif;
+	font-family: 'Ultra', serif;
 }
 
 .my-agu {
-	font-family: "Agu Display", serif;
+	font-family: 'Agu Display', serif;
 }
 
 .my-antonio {
-	font-family: "Antonio", serif;
+	font-family: 'Antonio', serif;
 }
 
 .my-default {
@@ -146,6 +146,22 @@
 
 /* * Search Page */
 
+/* help from gemini for flower-btn  */
+.flower-btn {
+	transition: transform 0.3s ease-in-out;
+	display: inline-block; /* ensures transform works correctly */
+}
+
+.flower-btn:hover {
+	/* Move it up 5 pixels and scale it slightly */
+	transform: translateY(-5px) scale(1.05);
+	cursor: pointer;
+}
+
+.flower-btn:active {
+	/* Small "press" effect when clicked */
+	transform: translateY(0) scale(0.98);
+}
 .search-page {
 	min-height: 100vh;
 	margin-top: 8vh;
@@ -201,7 +217,7 @@
 }
 
 .nav-pill::after {
-	content: "";
+	content: '';
 	position: absolute;
 	inset: 5px 2px; /* controls pill size */
 	border-radius: 999px; /* create pill shape */
