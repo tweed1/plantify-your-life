@@ -4,11 +4,12 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import Container from 'react-bootstrap/esm/Container';
 import { z } from 'zod';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Modal } from 'react-bootstrap';
 
 const PlantSchema = z.object({
 	common_name: z.string().min(1, { message: 'this is too small' }).optional(),
@@ -41,6 +42,8 @@ function EditForm() {
 	const [plant, setPlant] = useState<Plant | undefined>();
 	const [error, setError] = useState<string | undefined>();
 	const params = useParams();
+	const navigate = useNavigate();
+	const [showSuccessModal, setShowSuccessModal] = useState(false);
 	const {
 		handleSubmit,
 		register,
@@ -64,8 +67,8 @@ function EditForm() {
 
 			if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
-			const incomingData = await response.json();
-			console.dir(incomingData);
+			// Modal logic
+			setShowSuccessModal(true);
 		} catch (error: any) {
 			setError(error);
 		} finally {
@@ -390,6 +393,38 @@ function EditForm() {
 					</Col>
 				</Row>
 			</Form>
+			{/* Success Modal */}
+			<Modal
+				show={showSuccessModal}
+				onHide={() => setShowSuccessModal(false)}
+				centered
+				backdrop="static" // prevent closing by clicking outside
+			>
+				<Modal.Header closeButton>
+					<Modal.Title>Update Successful</Modal.Title>
+				</Modal.Header>
+
+				<Modal.Body>
+					The plant details have been updated successfully. What would
+					you like to do next?
+				</Modal.Body>
+
+				<Modal.Footer>
+					<Button
+						variant="secondary"
+						onClick={() => setShowSuccessModal(false)}>
+						Stay & Make more edits
+					</Button>
+
+					<Button
+						className="custom-primary"
+						variant="primary"
+						onClick={() => navigate('/manage')} 
+					>
+						Search for Another Plant
+					</Button>
+				</Modal.Footer>
+			</Modal>
 		</Container>
 	);
 }
