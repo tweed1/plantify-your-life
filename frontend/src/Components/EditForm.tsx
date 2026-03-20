@@ -49,8 +49,9 @@ function EditForm() {
 		register,
 		formState: { errors },
 	} = useForm({ resolver: zodResolver(PlantSchema) });
-
+    
 	const onSubmit: SubmitHandler<Plant> = async (data): Promise<void> => {
+        
 		console.dir(data);
 		try {
 			const response = await fetch(
@@ -74,7 +75,7 @@ function EditForm() {
 		} finally {
 		}
 	};
-
+    
 	useEffect(() => {
 		document.title = 'Edit Plant Details';
 

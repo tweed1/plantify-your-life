@@ -11,6 +11,7 @@ import Manage from "./Views/Manage";
 import EditPlant from "./Views/EditPlant";
 import AddPlant from "./Views/AddPlant";
 import DeletePlant from "./Views/DeletePlant";
+import Favorites from "./Views/Favorites";
 
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
 						<Route path="zonemap" element={<ZoneMap />} />
 						<Route path="zone/:id" element={<Zone />} />
                         <Route path="manage" element={<Manage />} />
+                        <Route path="favorites" element={<Favorites />} />
                         <Route path="add" element={<AddPlant />} />
                         <Route path="edit/:id" element={<EditPlant />} />
                         <Route path="delete/:id" element={< DeletePlant />} />
