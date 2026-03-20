@@ -3,27 +3,12 @@ import Image from "react-bootstrap/Image";
 import logo from "../assets/images/newton.jpeg";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-
-type Plant = {
-	common_name: string;
-	scientific_name: string[];
-	family: string;
-	origin: string[];
-	cycle: string;
-	sunlight?: string[];
-	description: string;
-	watering: string;
-	hardiness_min: number;
-    hardiness_max: number;
-	pest_susceptibility: string[];
-	edible_fruit: boolean;
-	edible_leaf: boolean;
-};
+import FavoriteButton from "../Components/FavoriteButton";
+import type { PlantModel } from "../types/plant";
 
 const PlantDetails = () => {
-	const apiKey = import.meta.env.VITE_PERENUAL_API_KEY;
 	const [loading, setLoading] = useState(false);
-	const [plant, setPlant] = useState<Plant | undefined>();
+	const [plant, setPlant] = useState<PlantModel | undefined>();
 	const [error, setError] = useState<string | undefined>();
 	const params = useParams();
 
@@ -83,6 +68,10 @@ const PlantDetails = () => {
 							}}
 							rounded
 						/>
+                        <div className="p-4">
+                        <FavoriteButton plant={plant} />
+                        </div>
+                        
 					</Col>
 					<Col
 						lg={8}
