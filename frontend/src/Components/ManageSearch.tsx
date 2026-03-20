@@ -69,6 +69,7 @@ const ManageSearch = () => {
 				<form
 					onSubmit={handleSubmit}
 					className="col-12 col-sm-12 col-md-8 col-lg-6 mx-auto">
+                    {/* NEW CONTENT */}
 					<h2 className="text-start ps-2 my-ultra fs-1">
 						<span
 							style={{
@@ -90,6 +91,7 @@ const ManageSearch = () => {
 							Delete
 						</span>
 					</h2>
+                    {/* END NEW CONTENT */}
 					<InputGroup className="mb-3" size="lg">
 						<Form.Control
 							value={searchTerm}
@@ -173,7 +175,8 @@ const ManageSearch = () => {
 						</p>
 					</nav>
 				)}
-				{/* Flower attached to navbar */}
+                {/* NEW CONTENT */}
+				{/* Add new plant flower button*/}
 				<Container fluid className="mx-0 px-0">
 					<Row>
 						<Col>
@@ -183,7 +186,7 @@ const ManageSearch = () => {
 								onClick={() => navigate('/add')}>
 								<Image
 									src={flower}
-									alt="half a purple bachelor button used for navigation bar decoration"
+									alt="open white strawflower with text 'add a new plant'"
 									rounded
 									width={150}
 									height={150}></Image>

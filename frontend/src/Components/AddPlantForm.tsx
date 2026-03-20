@@ -321,7 +321,8 @@ function AddForm() {
 					<Button
 						className="custom-primary"
 						variant="primary"
-						onClick={() => navigate('/manage')}>
+						
+                        onClick={() => navigate('/manage')}>
 						Back to Manage
 					</Button>
 				</Modal.Footer>

@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import placeholder from "../assets/images/newton.jpeg";
 
 const SearchPlant = () => {
-	const apiKey = import.meta.env.VITE_PERENUAL_API_KEY;
 	const [loading, setLoading] = useState(false);
 	const [instruction, setInstruction] = useState(true);
 	const [allPlants, setAllPlants] = useState([]);
@@ -21,8 +20,7 @@ const SearchPlant = () => {
 		try {
 			setLoading(true);
 			const response = await fetch(
-				`https://perenual.com/api/v2/species-list?key=${apiKey}&q=${term}&page=${page}`,
-				{ mode: "cors" }
+				`http://localhost:3000/plants?q=${term}&page=${page}`,
 			);
 
 			if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -107,7 +105,6 @@ const SearchPlant = () => {
 								<Card.Img
 									variant="top"
 									src={
-										plant.default_image?.thumbnail ??
 										placeholder
 									}
 									alt={plant.common_name}

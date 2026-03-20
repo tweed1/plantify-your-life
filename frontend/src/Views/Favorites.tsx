@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from 'react-router';
+import FavsList from "../Components/FavsList";
+
 const Favorites = () => {
 
     useEffect(() => {
@@ -8,6 +10,7 @@ const Favorites = () => {
 
 	return (
 		<div className="pt-4 search-page">
+            <FavsList />
 		</div>
 	);
 };

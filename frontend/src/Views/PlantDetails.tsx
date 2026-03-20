@@ -13,33 +13,11 @@ type Plant = {
 	sunlight?: string[];
 	description: string;
 	watering: string;
-	hardiness: {
-		min: string;
-		max: string;
-	};
+	hardiness_min: number;
+    hardiness_max: number;
 	pest_susceptibility: string[];
 	edible_fruit: boolean;
 	edible_leaf: boolean;
-	default_image?: {
-		license: 0;
-		license_name: string;
-		license_url: string;
-		original_url: string;
-		regular_url: string;
-		medium_url: string;
-		small_url: string;
-		thumbnail: string;
-	};
-	other_images?: {
-		license: 0;
-		license_name: string;
-		license_url: string;
-		original_url: string;
-		regular_url: string;
-		medium_url: string;
-		small_url: string;
-		thumbnail: string;
-	}[];
 };
 
 const PlantDetails = () => {
@@ -62,7 +40,7 @@ const PlantDetails = () => {
 			try {
 				setLoading(true);
 				const response = await fetch(
-					`http://localhost:3000/plant-details/${params.id}`
+					`http://localhost:3000/plants/${params.id}`
 				);
 
 				if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -92,28 +70,28 @@ const PlantDetails = () => {
 	return (
 		<div className="pt-4">
 			<Container fluid className="p-0">
-				<Row>
-					<Col md={3} className="p-0">
+				<Row gx={4}>
+					<Col lg={3} className="p-0">
 						{" "}
 						<Image
-							src={plant.default_image?.small_url || logo}
+							src={logo}
 							alt={`Image of ${plant.common_name}`}
 							style={{
-								width: "300px",
-								height: "300px",
+								width: "250x",
+								height: "250px",
 								objectFit: "cover",
 							}}
 							rounded
 						/>
 					</Col>
 					<Col
-						md={8}
+						lg={8}
 						className="p-0 mx-1 d-flex flex-column align-items-start">
 						<h1 className="my-ultra">{plant.common_name} </h1>
 						<h2 className="">{plant.scientific_name} </h2>
 						<p className="text-start"> {plant.description}</p>
 						<p className="mb-0">Family: {plant.family} </p>
-						<p className="">Origin: {plant.origin.join()}</p>
+						<p className="">Origin: {plant.origin}</p>
 					</Col>
 				</Row>
 			</Container>
@@ -141,8 +119,8 @@ const PlantDetails = () => {
 
 						<p className="">
 							{" "}
-							Hardiness Zone: {plant.hardiness.min} -{" "}
-							{plant.hardiness.max}
+							Hardiness Zone: {plant.hardiness_min} -{" "}
+							{plant.hardiness_max}
 						</p>
 						<p className="">
 							Pests: {plant.pest_susceptibility.join()}
