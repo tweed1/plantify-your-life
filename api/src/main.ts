@@ -1,31 +1,16 @@
 import express from 'express';
 import { prisma } from './lib/prisma';
 import cors from 'cors';
-import type { Prisma } from './generated/prisma/client';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const app = express();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 app.use(cors());
 app.use(express.json());
-const port = 3000;
-
-app.get('/', (req, res) => {
-	res.send('goodbye World!');
-});
-
-app.get('/user/:id', async (req, res) => {
-	const user = await prisma.user.findUnique({
-		where: {
-			id: Number(req.params.id),
-		},
-		include: {
-			posts: true,
-		},
-	});
-	return res.json(user);
-});
 
 // search all plants
-app.get('/plants', async (req, res) => {
+app.get('/api/plants', async (req, res) => {
 	try {
 		// q is the search term
 		const q = String(req.query.q ?? '');
@@ -49,12 +34,12 @@ app.get('/plants', async (req, res) => {
                 `;
 
 			// Fetch the count
-			const totalResult = await prisma.$queryRaw`
+			const totalResult: { count: number }[] = await prisma.$queryRaw`
                 SELECT COUNT(*) as count FROM "Plant"
                 WHERE "common_name" LIKE ${searchPattern}
                     OR "scientific_name" LIKE ${searchPattern}
                 `;
-			total = Number(totalResult[0].count);
+			total = Number(totalResult[0]!.count);
 		} else {
 			plants = await prisma.plant.findMany({
 				skip,
@@ -78,7 +63,7 @@ app.get('/plants', async (req, res) => {
 });
 
 // get a plant's details
-app.get('/plants/:id', async (req, res) => {
+app.get('/api/plants/:id', async (req, res) => {
 	const plant = await prisma.plant.findUnique({
 		where: {
 			id: Number(req.params.id),
@@ -87,7 +72,7 @@ app.get('/plants/:id', async (req, res) => {
 	return res.json(plant);
 });
 
-app.put('/plants/:id', async (req, res) => {
+app.put('/api/plants/:id', async (req, res) => {
 	const body = req.body;
 	console.dir(body);
 	try {
@@ -117,9 +102,9 @@ app.put('/plants/:id', async (req, res) => {
 	}
 });
 
-app.delete('/plants/:id', async (req, res) => {
+app.delete('/api/plants/:id', async (req, res) => {
 	const id = req.params.id;
-    console.log(id);
+	console.log(id);
 
 	try {
 		const deletedItem = await prisma.plant.delete({
@@ -131,7 +116,7 @@ app.delete('/plants/:id', async (req, res) => {
 	}
 });
 
-app.post('/plants', async (req, res) => {
+app.post('/api/plants', async (req, res) => {
 	const {
 		common_name,
 		cycle,
@@ -166,7 +151,22 @@ app.post('/plants', async (req, res) => {
 	res.json(newPlant);
 });
 
+// --- PRODUCTION FRONTEND SERVING ---
+if (process.env.NODE_ENV === 'production') {
+	// Point to where the Dockerfile copies the Vite 'dist' folder
+	const publicPath = path.join(__dirname, '../public');
+
+	app.use(express.static(publicPath));
+
+	// Handle React routing (SPA)
+	app.get('/{*splat}', (req, res) => {
+		res.sendFile(path.join(publicPath, 'index.html'));
+	});
+}
+
 /* ********************* */
-app.listen(port, () => {
-	console.log(`Example app listening on port ${port}`);
+const PORT = process.env.PORT ?? 8080;
+
+app.listen(PORT, () => {
+	console.log(`Example app listening on port ${PORT}`);
 });
