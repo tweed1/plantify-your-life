@@ -4,11 +4,12 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import Container from 'react-bootstrap/esm/Container';
 import { z } from 'zod';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Modal } from 'react-bootstrap';
 
 const PlantSchema = z.object({
 	common_name: z.string().min(1, { message: 'this is too small' }).optional(),
@@ -41,6 +42,8 @@ function AddForm() {
 	const [plant, setPlant] = useState<Plant | undefined>();
 	const [error, setError] = useState<string | undefined>();
 	const params = useParams();
+	const navigate = useNavigate();
+	const [showSuccessModal, setShowSuccessModal] = useState(false);
 	const {
 		handleSubmit,
 		register,
@@ -50,18 +53,18 @@ function AddForm() {
 	const onSubmit: SubmitHandler<Plant> = async (data): Promise<void> => {
 		console.dir(data);
 		try {
-			const response = await fetch(
-				`http://localhost:3000/plants/`,
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'},
-					body: JSON.stringify(data),
+			const response = await fetch(`http://localhost:3000/plants/`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
 				},
-			);
+				body: JSON.stringify(data),
+			});
 
 			if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            
+
+			/* Modal logic */
+			setShowSuccessModal(true);
 		} catch (error: any) {
 			setError(error);
 		} finally {
@@ -70,12 +73,10 @@ function AddForm() {
 
 	useEffect(() => {
 		document.title = 'Add New Plant';
-    });
+	});
 	if (error) {
 		return <p>Something went wrong :(</p>;
 	}
-	
-	
 
 	return (
 		<Container className="mb-3">
@@ -144,7 +145,9 @@ function AddForm() {
 							controlId="formGridAnatomy">
 							<Form.Label>Plant Anatomy</Form.Label>
 							<Form.Control
-								placeholder={'ex: Has pink and red leaves with a red stem and white flowers'}
+								placeholder={
+									'ex: Has pink and red leaves with a red stem and white flowers'
+								}
 								as="textarea"
 								{...register('plant_anatomy')}
 							/>
@@ -156,7 +159,9 @@ function AddForm() {
 							controlId="formGridDescription">
 							<Form.Label>Description</Form.Label>
 							<Form.Control
-								placeholder={'ex: The Common Paw Paw is an amazing, versatile species native to North America. Not only can the cooked fruit be used in desserts and other culinary dishes, but the seeds, leaves and bark can also provide medicinal benefits.'}
+								placeholder={
+									'ex: The Common Paw Paw is an amazing, versatile species native to North America. Not only can the cooked fruit be used in desserts and other culinary dishes, but the seeds, leaves and bark can also provide medicinal benefits.'
+								}
 								as="textarea"
 								{...register('description')}
 							/>
@@ -296,6 +301,32 @@ function AddForm() {
 					</Col>
 				</Row>
 			</Form>
+			{/* Success Modal */}
+			<Modal
+				show={showSuccessModal}
+				onHide={() => setShowSuccessModal(false)}
+				centered
+				backdrop="static" // prevent closing by clicking outside
+			>
+				<Modal.Header closeButton>
+					<Modal.Title>Added Successfully!</Modal.Title>
+				</Modal.Header>
+
+				<Modal.Body>
+					The plant details have been added successfully. You can
+					verify by searching for it again on the Manage page.
+				</Modal.Body>
+
+				<Modal.Footer>
+					<Button
+						className="custom-primary"
+						variant="primary"
+						
+                        onClick={() => navigate('/manage')}>
+						Back to Manage
+					</Button>
+				</Modal.Footer>
+			</Modal>
 		</Container>
 	);
 }

@@ -3,49 +3,12 @@ import Image from "react-bootstrap/Image";
 import logo from "../assets/images/newton.jpeg";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-
-type Plant = {
-	common_name: string;
-	scientific_name: string[];
-	family: string;
-	origin: string[];
-	cycle: string;
-	sunlight?: string[];
-	description: string;
-	watering: string;
-	hardiness: {
-		min: string;
-		max: string;
-	};
-	pest_susceptibility: string[];
-	edible_fruit: boolean;
-	edible_leaf: boolean;
-	default_image?: {
-		license: 0;
-		license_name: string;
-		license_url: string;
-		original_url: string;
-		regular_url: string;
-		medium_url: string;
-		small_url: string;
-		thumbnail: string;
-	};
-	other_images?: {
-		license: 0;
-		license_name: string;
-		license_url: string;
-		original_url: string;
-		regular_url: string;
-		medium_url: string;
-		small_url: string;
-		thumbnail: string;
-	}[];
-};
+import FavoriteButton from "../Components/FavoriteButton";
+import type { PlantModel } from "../types/plant";
 
 const PlantDetails = () => {
-	const apiKey = import.meta.env.VITE_PERENUAL_API_KEY;
 	const [loading, setLoading] = useState(false);
-	const [plant, setPlant] = useState<Plant | undefined>();
+	const [plant, setPlant] = useState<PlantModel | undefined>();
 	const [error, setError] = useState<string | undefined>();
 	const params = useParams();
 
@@ -62,7 +25,7 @@ const PlantDetails = () => {
 			try {
 				setLoading(true);
 				const response = await fetch(
-					`http://localhost:3000/plant-details/${params.id}`
+					`http://localhost:3000/plants/${params.id}`
 				);
 
 				if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -92,28 +55,32 @@ const PlantDetails = () => {
 	return (
 		<div className="pt-4">
 			<Container fluid className="p-0">
-				<Row>
-					<Col md={3} className="p-0">
+				<Row gx={4}>
+					<Col lg={3} className="p-0">
 						{" "}
 						<Image
-							src={plant.default_image?.small_url || logo}
+							src={logo}
 							alt={`Image of ${plant.common_name}`}
 							style={{
-								width: "300px",
-								height: "300px",
+								width: "250x",
+								height: "250px",
 								objectFit: "cover",
 							}}
 							rounded
 						/>
+                        <div className="p-4">
+                        <FavoriteButton plant={plant} />
+                        </div>
+                        
 					</Col>
 					<Col
-						md={8}
+						lg={8}
 						className="p-0 mx-1 d-flex flex-column align-items-start">
 						<h1 className="my-ultra">{plant.common_name} </h1>
 						<h2 className="">{plant.scientific_name} </h2>
 						<p className="text-start"> {plant.description}</p>
 						<p className="mb-0">Family: {plant.family} </p>
-						<p className="">Origin: {plant.origin.join()}</p>
+						<p className="">Origin: {plant.origin}</p>
 					</Col>
 				</Row>
 			</Container>
@@ -141,8 +108,8 @@ const PlantDetails = () => {
 
 						<p className="">
 							{" "}
-							Hardiness Zone: {plant.hardiness.min} -{" "}
-							{plant.hardiness.max}
+							Hardiness Zone: {plant.hardiness_min} -{" "}
+							{plant.hardiness_max}
 						</p>
 						<p className="">
 							Pests: {plant.pest_susceptibility.join()}
