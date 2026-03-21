@@ -24,10 +24,19 @@
 	font-weight: 500;
 }
 
+.custom-primary-nav {
+    background-color: #004040;
+	border: #005f5f;
+}
 .custom-primary {
 	/* background-color: #004040; */
 	background-color: #005f5f;
 	border: #005f5f;
+}
+
+.custom-primary:hover {
+    background-color: #008686;
+	border: #008686;
 }
 
 /* Change border color for a primary button */
@@ -104,7 +113,6 @@
 	border-radius: 8px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	box-sizing: border-box;
-	width: 90vw;
 	height: 100vh;
 	display: grid;
 	gap: 40px;

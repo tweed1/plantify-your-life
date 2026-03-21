@@ -56,7 +56,7 @@ function DeletePlantForm() {
 		console.dir(data);
 		try {
 			const response = await fetch(
-				`http://localhost:3000/plants/${params.id}`,
+				`/api/plants/${params.id}`,
 				{
 					method: 'DELETE',
 				},
@@ -84,7 +84,7 @@ function DeletePlantForm() {
 			try {
 				setLoading(true);
 				const response = await fetch(
-					`http://localhost:3000/plants/${params.id}`,
+					`/api/plants/${params.id}`,
 					{
 						method: 'GET',
 					},

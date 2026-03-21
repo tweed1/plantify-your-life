@@ -35,7 +35,7 @@ const HardinessZonesMap = () => {
 		const fetchData = async () => {
 			try {
                 setLoading(true)
-				const response = await fetch("/CS464P-frontend-hw/ophz/ophz.geojson");
+				const response = await fetch("/ophz/ophz.geojson");
 				if (!response.ok) {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
@@ -97,7 +97,7 @@ const HardinessZonesMap = () => {
 		<MapContainer
 			center={[39.5, -98.35]}
 			zoom={4}
-			style={{ height: "90%", width: "80%" }}>
+			style={{ height: "70%", width: "70%" }}>
 			<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 			{geo && (
 				<GeoJSON

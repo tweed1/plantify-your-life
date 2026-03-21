@@ -53,7 +53,7 @@ function AddForm() {
 	const onSubmit: SubmitHandler<Plant> = async (data): Promise<void> => {
 		console.dir(data);
 		try {
-			const response = await fetch(`http://localhost:3000/plants/`, {
+			const response = await fetch(`/api/plants/`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

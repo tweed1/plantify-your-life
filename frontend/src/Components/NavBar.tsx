@@ -9,7 +9,7 @@ import flower from "../assets/images/half-main-flower.png";
 const Navbar = () => {
 	return (
 		<>
-			<nav className="navbar navbar-expand-lg navbar-light navbar-brand custom-primary bg-gradient py-0 mx-0 ">
+			<nav className="navbar navbar-expand-lg navbar-light navbar-brand custom-primary-nav bg-gradient py-0 mx-0 ">
 				<div
 					className="container-fluid d-flex align-items-center justify-content-between"
 					id="navbarSupportedContent">

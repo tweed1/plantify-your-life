@@ -55,7 +55,7 @@ function EditForm() {
 		console.dir(data);
 		try {
 			const response = await fetch(
-				`http://localhost:3000/plants/${params.id}`,
+				`/api/plants/${params.id}`,
 				{
 					method: 'PUT',
 					headers: {
@@ -89,7 +89,7 @@ function EditForm() {
 			try {
 				setLoading(true);
 				const response = await fetch(
-					`http://localhost:3000/plants/${params.id}`,
+					`/api/plants/${params.id}`,
 					{
 						method: 'GET',
 					},

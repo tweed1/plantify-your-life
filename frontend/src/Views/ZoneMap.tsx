@@ -7,8 +7,8 @@ const ZoneMap = () => {
 	}, []);
 
 	return (
-		<div className="pt-4 search-page">
-			<div className="container justify-content-center d-flex flex-column pt-5">
+		<div className="">
+			<div className="container justify-content-center d-flex flex-column pt-0">
 				<h2 className="my-ultra pb-0">Zone Map</h2>
 			</div>
 
