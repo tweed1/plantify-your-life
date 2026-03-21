@@ -6,7 +6,6 @@ import { Col, Container, Row, Image, Button, Form } from 'react-bootstrap';
 import flower from '../assets/images/white_strawflower_sm.png';
 
 const ManageSearch = () => {
-	const apiKey = import.meta.env.VITE_PERENUAL_API_KEY;
 	const [loading, setLoading] = useState(false);
 	const [instruction, setInstruction] = useState(true);
 	const [allPlants, setAllPlants] = useState([]);
@@ -22,7 +21,7 @@ const ManageSearch = () => {
 		try {
 			setLoading(true);
 			const response = await fetch(
-				`http://localhost:3000/plants?q=${term}&page=${page}`,
+				`/api/plants?q=${term}&page=${page}`,
 			);
 
 			if (!response.ok) throw new Error(`HTTP ${response.status}`);

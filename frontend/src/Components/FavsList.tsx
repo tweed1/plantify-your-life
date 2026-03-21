@@ -7,7 +7,15 @@ const FavsList = () => {
     const navigate = useNavigate();
 	return (
         <Container>
-        <h2 className="ps-2 my-ultra fs-1">Explore</h2>
+        <h2 className="ps-2 my-ultra fs-1">My Favorites</h2>
+        <p className="mb-0">Your favorited plants are displayed here!</p>
+        <div className='mb-4'>
+				<button
+					onClick={() => navigate('/search')}
+					className="back-btn btn custom-primary py-1 px-2 text-white">
+					Search for Plants to Add!
+				</button>
+			</div>
 		<div className="col-12 col-sm-12 col-md-8 col-lg-6 mx-auto">
 			<ListGroup className="mx-auto" variant="flush">
 				{favorites.map((plant: any) => (
