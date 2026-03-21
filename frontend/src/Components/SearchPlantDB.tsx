@@ -20,7 +20,7 @@ const SearchPlant = () => {
 		try {
 			setLoading(true);
 			const response = await fetch(
-				`http://localhost:3000/plants?q=${term}&page=${page}`,
+				`/api/plants?q=${term}&page=${page}`,
 			);
 
 			if (!response.ok) throw new Error(`HTTP ${response.status}`);

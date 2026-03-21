@@ -1,0 +1,13 @@
+**/node_modules
+**/dist
+**/build
+.git
+data
+**/generated
+**/.DS_Store
+**/.env
+**/eslint.config.js
+**/.gitignore
+**/species_details_combined.json
+api/transform_species.py
+**/README.md

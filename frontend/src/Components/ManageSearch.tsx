@@ -1,7 +1,6 @@
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import placeholder from '../assets/images/newton.jpeg';
+import { useNavigate } from 'react-router-dom';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Col, Container, Row, Image, Button, Form } from 'react-bootstrap';
 import flower from '../assets/images/white_strawflower_sm.png';

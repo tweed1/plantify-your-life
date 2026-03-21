@@ -25,7 +25,7 @@ const PlantDetails = () => {
 			try {
 				setLoading(true);
 				const response = await fetch(
-					`http://localhost:3000/plants/${params.id}`
+					`/api/plants/${params.id}`
 				);
 
 				if (!response.ok) throw new Error(`HTTP ${response.status}`);

@@ -6,7 +6,7 @@
 	"homepage": "https://tweed1.github.io",
 	"scripts": {
 		"dev": "vite",
-		"build": "tsc -b && vite build",
+		"build": "vite build",
 		"lint": "eslint .",
 		"test": "vitest",
 		"predeploy": "npm run build",
