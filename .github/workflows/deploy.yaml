@@ -1,7 +1,7 @@
 name: Build and Deploy to GCE
 on:
   push:
-    branches: [ main, deployment ]
+    branches: [ main ]
 
 jobs:
   build-and-push:

@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 
 const app = express();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-app.use(cors());
+
 app.use(express.json());
 
 // search all plants
@@ -162,6 +162,9 @@ if (process.env.NODE_ENV === 'production') {
 	app.get('/{*splat}', (req, res) => {
 		res.sendFile(path.join(publicPath, 'index.html'));
 	});
+} else {
+    /* for development because they are on different urls but in production they're on the same server */
+    app.use(cors());
 }
 
 /* ********************* */
