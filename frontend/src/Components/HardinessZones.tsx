@@ -97,7 +97,7 @@ const HardinessZonesMap = () => {
 		<MapContainer
 			center={[39.5, -98.35]}
 			zoom={4}
-			style={{ height: "70%", width: "70%" }}>
+			style={{ height: "85%", width: "70%" }}>
 			<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 			{geo && (
 				<GeoJSON

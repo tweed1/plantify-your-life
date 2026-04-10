@@ -7,7 +7,7 @@ const Home = () => {
 	});
 	return (
 		<div>
-			<div className="justify-content-center d-flex flex-column container-fluid mb-5">
+			<div className="justify-content-center align-items-center d-flex flex-column container-fluid mb-5">
 				<div className="py-0 d-flex flex-column align-items-center">
 					<h1 className="my-ultra ">
 						Plantify

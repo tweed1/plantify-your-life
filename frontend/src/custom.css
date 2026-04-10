@@ -22,11 +22,94 @@
 
 .navbar-brand {
 	font-weight: 500;
+	height: 100px;
+}
+
+.nav-style {
+}
+
+.nav-text {
+	color: #004040;
+}
+.nav-style:hover {
+	text-decoration: underline;
+}
+
+.nav-item {
+	position: relative;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	/* position: relative;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 110px; 
+	padding: 0;  */
+}
+.nav-flower {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0.55);
+	width: 85px; /* adjust to your image size */
+	height: 85px;
+	object-fit: contain;
+	opacity: 0;
+	transition:
+		opacity 0.35s ease,
+		transform 0.35s ease;
+	pointer-events: none;
+	z-index: 0;
+
+	/* these two are key: */
+	display: block;
+	flex-shrink: 0;
+}
+.nav-item:hover .nav-flower {
+	opacity: 0.9;
+	transform: translate(-50%, -50%) scale(1.15);
+	color: #ebf9eb;
+}
+.nav-link-text {
+	/* 	position: relative;
+	z-index: 1;
+	font-weight: 500;
+	color: #004040;
+	white-space: nowrap; */
+	text-decoration: none;
+	white-space: nowrap;
+	position: relative;
+	z-index: 1;
+	color: #004040;
+	transition: color 0.35s ease;
+}
+.nav-item:hover .nav-link-text {
+	color: #004040; /* ← color when flower is behind it */
+}
+
+.navbar-nav {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	gap: 2rem; /* ← this is the only spacing, consistent between all items */
+	padding: 0;
+	margin: 0;
+}
+
+.navbar-nav li {
+	display: flex;
+	align-items: stretch;
 }
 
 .custom-primary-nav {
-    background-color: #004040;
-	border: #005f5f;
+	background-color: #ebf9eb;
+	color: #004040;
+	/* background-color: #004040;
+	border: #005f5f; */
 }
 .custom-primary {
 	/* background-color: #004040; */
@@ -35,7 +118,7 @@
 }
 
 .custom-primary:hover {
-    background-color: #008686;
+	background-color: #008686;
 	border: #008686;
 }
 
@@ -113,10 +196,10 @@
 	border-radius: 8px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	box-sizing: border-box;
-	height: 100vh;
+	height: 80vh;
 	display: grid;
 	gap: 40px;
-	width: 100%;
+	width: 90%;
 	justify-items: center;
 	align-items: center;
 }
@@ -210,29 +293,4 @@
 }
 .link:hover {
 	text-decoration: underline;
-}
-
-.nav-style {
-}
-
-.nav-style:hover {
-	text-decoration: underline;
-}
-
-.nav-pill {
-	position: relative;
-	z-index: 1;
-}
-
-.nav-pill::after {
-	content: '';
-	position: absolute;
-	inset: 5px 2px; /* controls pill size */
-	border-radius: 999px; /* create pill shape */
-	z-index: -1;
-	transition: background-color 0.2s ease;
-}
-
-.nav-pill:hover::after {
-	background-color: #93ba91; /* btn-secondary */
 }
