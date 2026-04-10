@@ -21,7 +21,7 @@ const Navbar = () => {
 	];
 	return (
 		<>
-			<nav className="navbar navbar-expand-lg navbar-light navbar-brand custom-primary-nav bg-gradient py-0 mx-0">
+			<nav className="navbar navbar-expand-lg navbar-light navbar-brand custom-primary-nav bg-gradient pt-4 mx-0">
 				<Container
 					className="align-items-center justify-content-start"
 					id="navbarSupportedContent">

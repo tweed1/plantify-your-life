@@ -20,7 +20,7 @@ const Zone = () => {
         )
     }
 	return (
-		<div className="m-0 search-page pb-5 pt-2">
+		<div className="m-0 top-spacing pb-5 pt-2">
 			<div>
 				<Container fluid className="m-0 p-0">
 					<Row className="p-0">

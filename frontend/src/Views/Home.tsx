@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import HardinessZones from "../Components/HardinessZones";
+import { Container } from "react-bootstrap";
 
 const Home = () => {
 	useEffect(() => {
 		document.title = "Home";
 	});
 	return (
-		<div>
-			<div className="justify-content-center align-items-center d-flex flex-column container-fluid mb-5">
+		<div className="top-spacing">
+			<Container className="justify-content-center align-items-center d-flex flex-column mb-5">
 				<div className="py-0 d-flex flex-column align-items-center">
 					<h1 className="my-ultra ">
 						Plantify
@@ -23,7 +24,7 @@ const Home = () => {
 				<div className="zone-grid-container my-1">
 					<HardinessZones />
 				</div>
-			</div>
+			</Container>
 		</div>
 	);
 };

@@ -9,7 +9,7 @@ const Favorites = () => {
     },[])
 
 	return (
-		<div className="pt-4 search-page">
+		<div className="pt-4 top-spacing ">
             <FavsList />
 		</div>
 	);

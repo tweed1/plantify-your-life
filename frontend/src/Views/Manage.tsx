@@ -9,7 +9,7 @@ const Manage = () => {
     },[])
 
 	return (
-		<div className="pt-4 search-page">
+		<div className="pt-4 top-spacing ">
             <ManageSearch/>
 		</div>
 	);

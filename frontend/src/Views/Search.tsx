@@ -7,7 +7,7 @@ const Search = () => {
     },[])
 
 	return (
-		<div className="pt-4 search-page">
+		<div className="pt-4 top-spacing ">
             <SearchPlant/>
 		</div>
 	);
