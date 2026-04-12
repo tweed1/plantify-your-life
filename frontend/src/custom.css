@@ -85,7 +85,7 @@
 	white-space: nowrap;
 	position: relative;
 	z-index: 1;
-	color: #004040;
+	color: #000000;
 	transition: color 0.35s ease;
 }
 .nav-item:hover .nav-link-text {
