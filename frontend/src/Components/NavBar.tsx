@@ -15,9 +15,9 @@ const Navbar = () => {
     const navigate = useNavigate();
 	const navItems = [
 		{ name: 'Home', path: '/', img: straw },
-		{ name: 'Search', path: '/search', img: yellow },
 		{ name: 'Manage', path: '/manage', img: straw },
 		{ name: 'Favorites', path: '/favorites', img: yellow },
+        { name: 'Meet the Maker', path: '/me', img: yellow },
 	];
 	return (
 		<>

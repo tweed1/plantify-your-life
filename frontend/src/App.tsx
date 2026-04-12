@@ -12,6 +12,7 @@ import EditPlant from "./Views/EditPlant";
 import AddPlant from "./Views/AddPlant";
 import DeletePlant from "./Views/DeletePlant";
 import Favorites from "./Views/Favorites";
+import Me from "./Views/Me";
 
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
 					<Route element={<AppLayout />}>
 						<Route index element={<Home />} />
 						<Route path="search" element={<Search />} />
+                        <Route path="me" element={<Me />} />
 						<Route path="zonemap" element={<ZoneMap />} />
 						<Route path="zone/:id" element={<Zone />} />
                         <Route path="manage" element={<Manage />} />
