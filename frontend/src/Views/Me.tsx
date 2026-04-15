@@ -27,7 +27,7 @@ import ToggleReveal from '../Components/ToggleReveal';
 
 const Me = () => {
 	useEffect(() => {
-		document.title = 'Me';
+		document.title = 'About';
 	});
 
 	return (
