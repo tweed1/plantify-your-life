@@ -5,7 +5,7 @@ import ManageSearch from "../Components/ManageSearch";
 const Manage = () => {
 
     useEffect(() => {
-        document.title = 'Manage'
+        document.title = 'Manage All Plants'
     },[])
 
 	return (

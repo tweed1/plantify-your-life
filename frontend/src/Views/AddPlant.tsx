@@ -6,7 +6,7 @@ const AddPlant = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		document.title = 'Add';
+		document.title = 'Add New Plant';
 	}, []);
 
 	return (

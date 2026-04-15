@@ -11,7 +11,7 @@ const Zone = () => {
 	const params = useParams<{id:string}>();
 
 	useEffect(() => {
-		document.title = "zone";
+		document.title = "Zone";
 	},[]);
 
     if (!params.id) {
