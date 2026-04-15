@@ -14,8 +14,8 @@ const Footer = () => {
 	console.log(logo);
 	return (
 		<footer>
-			<Container fluid className="p-3 custom-primary bg-gradient d-flex">
-				<Row className="text-white sans foot-row flex-fill">
+			<Container fluid className="p-3 footer-color bg-gradient d-flex">
+				<Row className="sans foot-row flex-fill">
 					<Col className="footer-col">
 						<Stack className="ps-5 ms-5">
 							<Image
@@ -24,28 +24,29 @@ const Footer = () => {
 								rounded
 								width={120}
 								height={120}></Image>
-							<h1 className="my-agu fs-4 text-start my-0">
+							<h1 className="my-agu fs-4 text-start my-0 footer-text">
 								Plantify
 							</h1>
-							<p className="my-agu text-start my-0">
-								Designed by Katie Tweed
+							<p className="footer-text text-start my-0">
+								Project by Katie Tweed
 							</p>
 						</Stack>
 					</Col>
+                    <Col></Col>
 					<Col className="footer-col">
-						<Nav className="flex-column my-ultra">
+						<Nav className="flex-column footer-text align-items-start">
 							References
 							<NavLink
 								href="https://perenual.com/docs/api"
-								className="text-white link my-default pb-0">
+								className="link pb-0 footer-text">
 								{" "}
-								Primary API from Perenual
+								Data based on Perenual API
 							</NavLink>
 							<NavLink
 								href="https://github.com/kgjenkins/ophz"
-								className="text-white link my-default">
+								className="link footer-text">
 								{" "}
-								Geojson from OPHZ
+								Zone map geojson from OPHZ
 							</NavLink>
 						</Nav>
 					</Col>

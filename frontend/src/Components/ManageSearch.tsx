@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Col, Container, Row, Image, Button, Form, InputGroup } from 'react-bootstrap';
-import flower from '../assets/images/white_strawflower_sm.png';
+import flower from '../assets/images/add_plant.png';
 
 const ManageSearch = () => {
 	const [loading, setLoading] = useState(false);
@@ -185,8 +185,8 @@ const ManageSearch = () => {
 									src={flower}
 									alt="open white strawflower with text 'add a new plant'"
 									rounded
-									width={150}
-									height={150}></Image>
+									width={145}
+									height={145}></Image>
 							</Button>
 						</Col>
 						<Col></Col>

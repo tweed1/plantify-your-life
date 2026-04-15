@@ -29,9 +29,6 @@
 .nav-style {
 }
 
-.nav-text {
-	color: #004040;
-}
 .nav-style:hover {
 	text-decoration: underline;
 }
@@ -43,20 +40,13 @@
 	align-items: center;
 	justify-content: center;
 	padding: 0;
-	/* position: relative;
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 110px; 
-	padding: 0;  */
 }
 .nav-flower {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%) scale(0.55);
-	width: 85px; /* adjust to your image size */
+	width: 85px;
 	height: 85px;
 	object-fit: contain;
 	opacity: 0;
@@ -65,8 +55,6 @@
 		transform 0.35s ease;
 	pointer-events: none;
 	z-index: 0;
-
-	/* these two are key: */
 	display: block;
 	flex-shrink: 0;
 }
@@ -76,11 +64,6 @@
 	color: #ebf9eb;
 }
 .nav-link-text {
-	/* 	position: relative;
-	z-index: 1;
-	font-weight: 500;
-	color: #004040;
-	white-space: nowrap; */
 	text-decoration: none;
 	white-space: nowrap;
 	position: relative;
@@ -89,7 +72,8 @@
 	transition: color 0.35s ease;
 }
 .nav-item:hover .nav-link-text {
-	color: #004040; /* ← color when flower is behind it */
+	color: #000000;
+    -webkit-text-stroke: .5px white;
 }
 
 .navbar-nav {
@@ -105,6 +89,16 @@
 	display: flex;
 	align-items: stretch;
 }
+
+#logo-dropdown::after {
+    display: none;
+}
+
+.nav-dropdown{
+    background-color: #c0dccc; /* 477979, 779797, c0dccc */
+}
+
+
 
 .custom-primary-nav {
 	background-color: #ebf9eb;
@@ -285,7 +279,15 @@
 
 .foot-row {
 	justify-content: space-between;
-	color: #93ba91;
+}
+
+.footer-color {
+    background-color: #004040;
+    color: #819797;
+}
+
+.footer-text {
+    color: #819797;
 }
 
 .link {
