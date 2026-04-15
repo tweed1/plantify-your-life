@@ -4,20 +4,21 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import '../custom.css';
-import flower from '../assets/images/half-main-flower.png';
 import logo from '../assets/images/color-logo.png';
-import yellow from '../assets/images/rudbeckia-tiny.png';
-import straw from '../assets/images/white_strawflower_small.png'
+import dahlia from '../assets/images/pink_dahlia.png';
+import lisi from '../assets/images/pink_lisi.png'
+import peony from '../assets/images/pink_peony.png'
+import yarrow from '../assets/images/pink_yarrow.png'
 import Button from 'react-bootstrap/esm/Button';
 import { useNavigate, useParams } from 'react-router';
 
 const Navbar = () => {
     const navigate = useNavigate();
 	const navItems = [
-		{ name: 'Home', path: '/', img: straw },
-		{ name: 'Manage', path: '/manage', img: straw },
-		{ name: 'Favorites', path: '/favorites', img: yellow },
-        { name: 'Meet the Maker', path: '/me', img: yellow },
+		{ name: 'Home', path: '/', img: dahlia },
+		{ name: 'Manage', path: '/manage', img: lisi },
+		{ name: 'Favorites', path: '/favorites', img: peony },
+        { name: 'Meet the Maker', path: '/me', img: yarrow },
 	];
 	return (
 		<>
