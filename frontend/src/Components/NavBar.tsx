@@ -4,9 +4,7 @@ import dahlia from '../assets/images/pink_dahlia.png';
 import lisi from '../assets/images/pink_lisi.png'
 import peony from '../assets/images/pink_peony.png'
 import yarrow from '../assets/images/pink_yarrow.png'
-import Button from 'react-bootstrap/esm/Button';
-import { useNavigate, useParams, Link } from 'react-router';
-import { useState } from 'react';
+import { useNavigate, Link } from 'react-router';
 import { Container, Image, Dropdown } from 'react-bootstrap';
 
 const Navbar = () => {
@@ -16,7 +14,7 @@ const Navbar = () => {
         { name: 'Home', path: '/', img: dahlia },
         { name: 'Manage', path: '/manage', img: lisi },
         { name: 'Favorites', path: '/favorites', img: peony },
-        { name: 'Meet the Maker', path: '/me', img: yarrow },
+        { name: 'About', path: '/me', img: yarrow },
     ];
 
     return (
