@@ -96,8 +96,9 @@
 
 .nav-dropdown{
     background-color: #c0dccc; /* 477979, 779797, c0dccc */
-    color: white;
 }
+
+
 
 .custom-primary-nav {
 	background-color: #ebf9eb;
@@ -278,7 +279,15 @@
 
 .foot-row {
 	justify-content: space-between;
-	color: #93ba91;
+}
+
+.footer-color {
+    background-color: #004040;
+    color: #819797;
+}
+
+.footer-text {
+    color: #819797;
 }
 
 .link {
