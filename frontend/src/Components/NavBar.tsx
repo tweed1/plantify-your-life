@@ -47,7 +47,7 @@ const Navbar = () => {
                                     key={item.name}>
                                     <img
                                         src={item.img}
-                                        alt=""
+                                        alt="Flower Image"
                                         aria-hidden="true"
                                         className="me-2"
                                         width={25}
