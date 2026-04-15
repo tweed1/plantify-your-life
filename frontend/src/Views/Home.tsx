@@ -19,7 +19,7 @@ const Home = () => {
 					<h2 className="my-sans fs-5">Find plant details, save your favorites, & add new plants</h2>
                     <hr className="border-2 border-top rounded border-dark my-3 hr-style" />
 				</div>
-                <div className="p-4 my-5"></div>
+                <div className="my-4"></div>
                 
                 < SearchPlant />
 				<div className="container justify-content-center d-flex flex-column pt-0">
