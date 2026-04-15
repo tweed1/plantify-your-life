@@ -13,7 +13,7 @@ async function runImport() {
 	]);
 
 	let batch: any[] = [];
-	const BATCH_SIZE = 500; // Smaller batches are safer for SQLite
+	const BATCH_SIZE = 50; // Smaller batches are safer for SQLite
 
 	console.log('Starting import...');
 
@@ -40,7 +40,7 @@ async function runImport() {
 			'genus',
 			'growth_rate',
 			'hardiness_min',
-            'hardiness_max',
+			'hardiness_max',
 			'harvest_season',
 			'hybrid',
 			'indoor',
@@ -81,8 +81,8 @@ async function runImport() {
 				console.log(`Inserted ${batch.length} records...`);
 			} catch (err) {
 				console.error('Batch insert failed:', err);
-                return;
-			} 
+				return;
+			}
 
 			batch = [];
 			pipeline.resume(); // Start reading again
@@ -92,6 +92,7 @@ async function runImport() {
 	pipeline.on('end', async () => {
 		if (batch.length > 0) {
 			await prisma.plant.createMany({ data: batch });
+			batch = [];
 		}
 		console.log('Import finished successfully.');
 		await prisma.$disconnect();
