@@ -122,8 +122,8 @@ function EditForm() {
 	return (
 		<Container className="mb-3">
 			<Form onSubmit={handleSubmit(onSubmit)}>
-				<Row>
-					<Col xl>
+				<Row >
+					<Col xl >
 						{/* image upload and common name */}
 						<Row className="mb-1">
 							<Form.Group
@@ -221,10 +221,10 @@ function EditForm() {
 						</Form.Group>
 					</Col>
 
-					<Col xl>
+					<Col xl >
 						{/* family, genus, and type */}
 						<Row className="mb-3">
-							<Form.Group as={Col} controlId="formGridFamily">
+							<Form.Group as={Col} controlId="formGridFamily" className="text-start">
 								<Form.Label>Family</Form.Label>
 								<Form.Control
 									type="text"
@@ -238,7 +238,7 @@ function EditForm() {
 								/>
 							</Form.Group>
 
-							<Form.Group as={Col} controlId="formGridFamily">
+							<Form.Group as={Col} controlId="formGridFamily" className="text-start">
 								<Form.Label>Genus</Form.Label>
 								<Form.Control
 									type="text"
@@ -261,7 +261,7 @@ function EditForm() {
 								</Form.Select>
 							</Form.Group> */}
 
-							<Form.Group as={Col} controlId="formGridFamily">
+							<Form.Group as={Col} controlId="formGridFamily" className="text-start">
 								<Form.Label>Type</Form.Label>
 								<Form.Control
 									type="text"
@@ -277,7 +277,7 @@ function EditForm() {
 						</Row>
 						{/* cycle, flowering season, harvest season */}
 						<Row className="mb-3">
-							<Form.Group as={Col} controlId="formGridFamily">
+							<Form.Group as={Col} controlId="formGridFamily" className="text-start">
 								<Form.Label>Cycle</Form.Label>
 								<Form.Control
 									type="text"
@@ -291,7 +291,7 @@ function EditForm() {
 								/>
 							</Form.Group>
 
-							<Form.Group as={Col} controlId="formGridFamily">
+							<Form.Group as={Col} controlId="formGridFamily" className="text-start">
 								<Form.Label>Flowering Season</Form.Label>
 								<Form.Control
 									type="text"
@@ -305,7 +305,7 @@ function EditForm() {
 								/>
 							</Form.Group>
 
-							<Form.Group as={Col} controlId="formGridFamily">
+							<Form.Group as={Col} controlId="formGridFamily" className="text-start">
 								<Form.Label>Harvest Season</Form.Label>
 								<Form.Control
 									type="text"

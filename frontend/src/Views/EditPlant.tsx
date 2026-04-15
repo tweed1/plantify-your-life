@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import EditForm from '../Components/EditForm';
 import { useNavigate } from 'react-router';
+import { Container } from 'react-bootstrap';
 
 const EditPlant = () => {
 	const navigate = useNavigate();
@@ -11,15 +12,19 @@ const EditPlant = () => {
 
 	return (
 		<div className="pt-4">
-			<div className='text-start'>
+			<Container className='text-start'>
 				<button
 					onClick={() => navigate('/manage')}
 					className="back-btn btn">
 					Back
 				</button>
-			</div>
+                
+			</Container>
+            <Container>
+                <EditForm />
+            </Container>
 
-			<EditForm />
+			
 		</div>
 	);
 };

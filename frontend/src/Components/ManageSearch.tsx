@@ -1,8 +1,7 @@
-import InputGroup from 'react-bootstrap/InputGroup';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { Col, Container, Row, Image, Button, Form } from 'react-bootstrap';
+import { Col, Container, Row, Image, Button, Form, InputGroup } from 'react-bootstrap';
 import flower from '../assets/images/white_strawflower_sm.png';
 
 const ManageSearch = () => {

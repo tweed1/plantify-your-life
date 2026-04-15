@@ -54,7 +54,7 @@ const PlantDetails = () => {
 	}
 	return (
 		<div className="pt-4">
-			<Container fluid className="p-0">
+			<Container className="p-0">
 				<Row gx={4}>
 					<Col lg={3} className="p-0">
 						{" "}
@@ -85,7 +85,7 @@ const PlantDetails = () => {
 				</Row>
 			</Container>
 
-			<Container fluid className="p-0 my-4">
+			<Container className="p-0 my-4">
 				<Row>
 					<Col md={3} className="p-0"></Col>
 					<div className="vr vr-style"></div>

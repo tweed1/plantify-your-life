@@ -64,7 +64,7 @@ const SearchPlant = () => {
 				{/* Search Bar */}
 				<form
 					onSubmit={handleSubmit}
-					className="col-12 col-sm-12 col-md-8 col-lg-6 mx-auto">
+					className="col-12 col-md-10 col-lg-8 mx-auto">
 					<h2 className="text-start ps-2 my-ultra fs-1">Explore</h2>
 					<InputGroup className="mb-3" size="lg">
 						<Form.Control
@@ -83,9 +83,9 @@ const SearchPlant = () => {
 						</Button>
 					</InputGroup>
 				</form>
-				{instruction && (
+				{/* {instruction && (
 					<p>Click "Search" with no input to search all plants</p>
-				)}
+				)} */}
 				{loading && <p>Loading...</p>}
 				{error && <p> Error: </p>}
 
