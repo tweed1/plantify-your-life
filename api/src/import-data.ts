@@ -13,7 +13,7 @@ async function runImport() {
 	]);
 
 	let batch: any[] = [];
-	const BATCH_SIZE = 500; // Smaller batches are safer for SQLite
+	const BATCH_SIZE = 50; // Smaller batches are safer for SQLite
 
 	console.log('Starting import...');
 
@@ -92,6 +92,7 @@ async function runImport() {
 	pipeline.on('end', async () => {
 		if (batch.length > 0) {
 			await prisma.plant.createMany({ data: batch });
+            batch = [];
 		}
 		console.log('Import finished successfully.');
 		await prisma.$disconnect();
