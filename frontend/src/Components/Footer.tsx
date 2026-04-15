@@ -40,13 +40,13 @@ const Footer = () => {
 								href="https://perenual.com/docs/api"
 								className="link pb-0 footer-text">
 								{" "}
-								Primary API from Perenual
+								Data based on Perenual API
 							</NavLink>
 							<NavLink
 								href="https://github.com/kgjenkins/ophz"
 								className="link footer-text">
 								{" "}
-								Geojson from OPHZ
+								Zone map geojson from OPHZ
 							</NavLink>
 						</Nav>
 					</Col>
