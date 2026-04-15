@@ -53,7 +53,7 @@ const Results = () => {
 	return (
 		<div className="container-fluid m-0">
 			<div className="d-flex flex-column justify-content-center align-items-center m-0">
-				{error && <p> Error: </p>}
+				{error && <p className="my-ultra pt-5"> * Work in Progress * </p>}
 				{loadResults && (
 					<div>
 						<div className="d-flex flex-wrap justify-content-center align-items-center gap-2 card-container">
@@ -82,8 +82,6 @@ const Results = () => {
 												height: "80px",
 												width: "110px",
 												objectFit: "cover",
-												/* display: "block",
-                                        margin: "0 auto", */
 											}}
 										/>
 										<Card.Body>

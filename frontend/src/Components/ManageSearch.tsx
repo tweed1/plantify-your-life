@@ -1,7 +1,16 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { Col, Container, Row, Image, Button, Form, InputGroup } from 'react-bootstrap';
+import {
+	Col,
+	Container,
+	Row,
+	Image,
+	Button,
+	Form,
+	InputGroup,
+	Placeholder,
+} from 'react-bootstrap';
 import flower from '../assets/images/add_plant.png';
 
 const ManageSearch = () => {
@@ -13,15 +22,16 @@ const ManageSearch = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [lastPage, setLastPage] = useState(1);
 	const [actionType, setActionType] = useState('update');
+	const [imageLoaded, setImageLoaded] = useState(false);
+	const [imageError, setImageError] = useState(false);
+
 	const navigate = useNavigate();
 
 	/* fetches species list with given search term and page number */
 	const fetchPlants = async (page = 1, term = searchTerm) => {
 		try {
 			setLoading(true);
-			const response = await fetch(
-				`/api/plants?q=${term}&page=${page}`,
-			);
+			const response = await fetch(`/api/plants?q=${term}&page=${page}`);
 
 			if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
@@ -66,12 +76,15 @@ const ManageSearch = () => {
 				<form
 					onSubmit={handleSubmit}
 					className="col-12 col-sm-12 col-md-8 col-lg-6 mx-auto">
-                    {/* NEW CONTENT */}
+					{/* NEW CONTENT */}
 					<h2 className="text-start ps-2 my-ultra fs-1">
 						<span
 							style={{
 								cursor: 'pointer',
-								textDecoration: actionType === "update" ? "underline" : "none"
+								textDecoration:
+									actionType === 'update'
+										? 'underline'
+										: 'none',
 							}}
 							onClick={() => setActionType('update')}>
 							Update
@@ -82,13 +95,16 @@ const ManageSearch = () => {
 						<span
 							style={{
 								cursor: 'pointer',
-								textDecoration: actionType === "delete" ? "underline" : "none"
+								textDecoration:
+									actionType === 'delete'
+										? 'underline'
+										: 'none',
 							}}
 							onClick={() => setActionType('delete')}>
 							Delete
 						</span>
 					</h2>
-                    {/* END NEW CONTENT */}
+					{/* END NEW CONTENT */}
 					<InputGroup className="mb-3" size="lg">
 						<Form.Control
 							value={searchTerm}
@@ -111,7 +127,6 @@ const ManageSearch = () => {
 				)}
 				{loading && <p>Loading...</p>}
 				{error && <p> Error: </p>}
-
 				{/* NEW CONTENT */}
 				{/* List Results */}
 				<div className="col-12 col-sm-12 col-md-8 col-lg-6 mx-auto">
@@ -172,25 +187,51 @@ const ManageSearch = () => {
 						</p>
 					</nav>
 				)}
-                {/* NEW CONTENT */}
+				{/* NEW CONTENT */}
 				{/* Add new plant flower button*/}
+
 				<Container fluid className="mx-0 px-0">
 					<Row>
 						<Col>
 							<Button
 								variant="link"
-								className="p-0 border-0 flower-btn" // p-0 removes default button padding
+								className="p-0 border-0 flower-btn"
 								onClick={() => navigate('/add')}>
-								<Image
-									src={flower}
-									alt="open white strawflower with text 'add a new plant'"
-									rounded
-									width={145}
-									height={145}></Image>
+								{/* SHOW PLACEHOLDER IF: It hasn't loaded yet */}
+								{(!imageLoaded) && (
+									<Placeholder as="div" animation="glow">
+										<Placeholder
+											style={{
+												width: '145px',
+												height: '145px',
+												backgroundColor: '#78ab55',
+												borderRadius: '50%', // Matches 'rounded' prop
+											}}
+										/>
+									</Placeholder>
+								)}
+
+								{/* IMAGE: Hidden via CSS until loaded, unless there is an error */}
+								{!imageError && (
+									<Image
+										src={flower}
+										alt="Add plant"
+										rounded
+										width={145}
+										height={145}
+										style={{
+											display: imageLoaded
+												? 'block'
+												: 'none',
+										}}
+										onLoad={() => setImageLoaded(true)}
+										onError={() => setImageError(true)}
+									/>
+								)}
 							</Button>
 						</Col>
 						<Col></Col>
-						<Col className=""></Col>
+						<Col></Col>
 					</Row>
 				</Container>
 			</div>

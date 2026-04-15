@@ -1,6 +1,6 @@
 import { Col, Container, Row } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
-import logo from "../assets/images/newton.jpeg";
+import defaultIm from "../assets/images/image_default.png";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import FavoriteButton from "../Components/FavoriteButton";
@@ -59,7 +59,7 @@ const PlantDetails = () => {
 					<Col lg={3} className="p-0">
 						{" "}
 						<Image
-							src={logo}
+							src={defaultIm}
 							alt={`Image of ${plant.common_name}`}
 							style={{
 								width: "250x",

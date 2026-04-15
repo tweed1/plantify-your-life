@@ -4,7 +4,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Card from "react-bootstrap/Card";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import placeholder from "../assets/images/newton.jpeg";
+import placeholder from "../assets/images/image_default.png";
 
 const SearchPlant = () => {
 	const [loading, setLoading] = useState(false);
