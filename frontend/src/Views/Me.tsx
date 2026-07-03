@@ -62,7 +62,7 @@ const Me = () => {
                                     href: 'https://github.com/tweed1/plantify-your-life',
 								},
 								{
-									label: 'kdtweed2@gmail.com',
+									label: 'tweedde4364@gmail.com',
 									icon: <BsEnvelopeCheck />,
 								},
 
@@ -83,7 +83,7 @@ const Me = () => {
 									icon: <BsFillClipboard2DataFill />,
 								},
 								{
-									label: 'Accounts, AI, Mobile-friendly, & more!',
+									label: 'Accounts & more to come!',
 									icon: <BsFillSkipForwardCircleFill />,
 								},
 							]}></ToggleReveal>
