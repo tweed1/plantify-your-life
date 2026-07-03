@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import HardinessZones from "../Components/HardinessZones";
-import { Container, Image } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import SearchPlant from "../Components/SearchPlantDB";
-import IntroImages from "../Components/IntroImages";
 
 const Home = () => {
 	useEffect(() => {
 		document.title = "Home";
-	});
+	}, []);
 	return (
 		<div className="top-spacing">
 			<Container className="justify-content-center align-items-start px-3">
