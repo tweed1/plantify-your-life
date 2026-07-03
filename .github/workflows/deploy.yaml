@@ -1,5 +1,6 @@
 name: Build and Deploy to GCE
 on:
+  workflow_dispatch:
   push:
     branches: [ main ]
 
