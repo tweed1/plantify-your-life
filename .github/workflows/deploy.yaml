@@ -32,7 +32,7 @@ jobs:
             sudo docker stop plantify || true
             sudo docker rm plantify || true
             sudo docker run -d \
+              --network cloudflare-net \
               --name plantify \
-              -p 80:8080 \
               -v ~/data:/app/data \
               ghcr.io/${{ github.repository }}:latest
